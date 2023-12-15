@@ -7,7 +7,7 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
+    <header class="header-nav">
       <h1>📘The Code Magazine</h1>
       <!-- look like these doing the same thing that linking to another page, so its called navigation, we have element nav for it -->
       <nav>
@@ -19,10 +19,12 @@
     </header>
 
     <article>
-      <header>
+      <header class="post-header">
         <h2>The Basic Language of the Web: HTML</h2>
         <img alt="girl" src="laura-jones.jpg" height="50" width="50" />
-        <p>Posted by <strong>Laura Jones</strong> on Monday, June 21st 2027</p>
+        <p id="author">
+          Posted by <strong>Laura Jones</strong> on Monday, June 21st 2027
+        </p>
         <img src="post-img.jpg" alt="post-img" height="200" width="500" />
       </header>
       <p>
@@ -81,7 +83,7 @@
 
     <aside>
       <h4>Related posts</h4>
-      <ul>
+      <ul class="related-content">
         <li>
           <img
             src="related-1.jpg"
@@ -91,7 +93,7 @@
           />
           <a href="">How to learn Web Development</a>
         </li>
-        <p>By Jonas Schmedtmann</p>
+        <p class="related-author">By Jonas Schmedtmann</p>
         <li>
           <img
             src="related-2.jpg"
@@ -100,16 +102,20 @@
             height="75"
           /><a href="#">The Unknown Powers of CSS</a>
         </li>
-        <p>By Jim Dillon</p>
+        <p class="related-author">By Jim Dillon</p>
         <li>
           <img src="related-3.jpg" alt="code screen" width="75" height="75" /><a
             href="#"
             >Why JavaScript is Awesome</a
           >
         </li>
-        <p>By Matilda</p>
+        <p class="related-author">By Matilda</p>
       </ul>
     </aside>
-    <footer>Copyright &copy; 2027 by the Code Magazine.</footer>
+    <footer>
+      <p id="copyright" class="copyright" class="text">
+        Copyright &copy; 2027 by the Code Magazine.
+      </p>
+    </footer>
   </body>
 </html>
