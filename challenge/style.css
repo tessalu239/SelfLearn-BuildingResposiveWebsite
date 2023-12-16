@@ -74,6 +74,7 @@ aside {
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
   padding: 50px 0;
+  width: 50%;
 }
 li:first-child {
   /*choose all the li element-> and choose first one of it*/
@@ -107,3 +108,31 @@ ol {
   margin-left: 50px;
   margin-bottom: 20px;
 }
+
+.post-image {
+  width: 100%;
+  height: auto;
+}
+nav a:link {
+  /* background-color: pink;
+  margin: 20px; /*you will see the vertical margin remain unchanged, only margin left and right change*/
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block;
+}
+/*center the page*/
+.container {
+  /*put the body into a container, put margin left and right auto for browser to calculate itself */
+  width: 80%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin: 0 auto;
+  position: relative;
+}
+.like {
+  padding: 15px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+/*Position absolute will always according to viewport by default, wanna set the parent for it to according to, set relative for the parent (eg: for the page, set body to position relative*/
