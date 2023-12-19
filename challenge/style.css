@@ -3,6 +3,7 @@
   /*Universal- no inheritance: lowest priority-> easy to override, but it is helpful for apply for every element*/
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: sans-serif;
@@ -61,6 +62,7 @@ li {
 
 .related-content {
   list-style: none;
+  padding-right: 20px;
 }
 
 .header-nav {
@@ -74,7 +76,7 @@ aside {
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
   padding: 50px 0;
-  width: 50%;
+  width: 80%;
 }
 li:first-child {
   /*choose all the li element-> and choose first one of it*/
@@ -101,6 +103,7 @@ a:hover {
 
 .post-header {
   margin-bottom: 40px;
+  position: relative;
 }
 
 ul,
@@ -116,7 +119,7 @@ ol {
 nav a:link {
   /* background-color: pink;
   margin: 20px; /*you will see the vertical margin remain unchanged, only margin left and right change*/
-  margin-right: 30px;
+  margin-right: 20px;
   margin-top: 10px;
   display: inline-block;
 }
@@ -127,7 +130,7 @@ nav a:link {
   /* margin-left: auto;
   margin-right: auto; */
   margin: 0 auto;
-  position: relative;
+  /* position: relative; */
 }
 .like {
   padding: 15px;
@@ -136,3 +139,54 @@ nav a:link {
   right: 10px;
 }
 /*Position absolute will always according to viewport by default, wanna set the parent for it to according to, set relative for the parent (eg: for the page, set body to position relative*/
+h1::first-letter {
+  font-style: normal;
+  margin-right: 5px;
+}
+/* p::first-line -> select first line of all p element
+h3+p::first-line select the first line of the p after h3 */
+
+/* Create a content after an element */
+h2 {
+  position: relative;
+}
+h2::after {
+  content: "TOP";
+  background-color: #ffe70e;
+  color: #000;
+  font-size: 12px;
+  padding: 5px 7px;
+  position: absolute;
+  right: -15px;
+  top: -20px;
+}
+nav {
+  text-align: center;
+}
+nav a:last-child {
+  margin-right: 0;
+}
+
+/* FLOATS */
+h1 {
+  float: left;
+}
+nav {
+  float: right;
+}
+.header-nav::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+article {
+  float: left;
+  width: 60%;
+}
+aside {
+  float: right;
+  width: 30%;
+}
+footer {
+  clear: both;
+}
