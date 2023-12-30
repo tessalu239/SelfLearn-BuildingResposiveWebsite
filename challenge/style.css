@@ -3,13 +3,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 body {
   position: absolute;
   top: 0px;
   left: 50%;
   margin-left: -500px;
+  font-size: 14px;
 }
 h3,
 h4 {
@@ -26,7 +27,7 @@ h3 {
 }
 
 article {
-  width: 800px;
+  width: 60%;
   margin: 50px;
   border: 5px solid #000;
 }
@@ -38,11 +39,11 @@ article {
   text-transform: uppercase;
   color: #777;
   font-weight: bold;
-  font-size: 12px;
-  margin-bottom: 20px;
+  font-size: 10px;
 }
 .ready {
   margin-bottom: 15px;
+  line-height: 1.5;
 }
 .more-info {
   color: #000;
@@ -113,4 +114,20 @@ article {
   height: 25px;
   text-align: center;
   padding: 7px;
+}
+.price-shipping {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 8px;
+  margin-bottom: 20px;
+}
+.main-content {
+  display: flex;
+  gap: 30px;
+}
+.general,
+.product-detail {
+  margin-top: 30px;
+  flex: 1;
 }
