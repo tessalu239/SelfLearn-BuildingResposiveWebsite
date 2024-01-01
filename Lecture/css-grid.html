@@ -40,19 +40,39 @@
         margin: 40px;
 
         /* CSS GRID */
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* height: 600px; */
+        grid-template-rows: 1fr 1fr;
+
+        column-gap: 20px;
+        row-gap: 40px;
+        display: none;
       }
 
       .container--2 {
         /* STARTER */
+
         font-family: sans-serif;
         background-color: black;
         font-size: 40px;
         margin: 100px;
 
-        width: 1000px;
+        width: 700px;
         height: 600px;
 
         /* CSS GRID */
+        display: grid;
+        grid-template-columns: 125px 200px 125px;
+        grid-template-rows: 250px 100px;
+
+        /* Aligning tracks inside container: distribute empty space */
+        justify-content: center;
+        align-content: center;
+
+        /* Aligning items INSIDE cells: moving items around inside cells */
+        align-items: center;
+        justify-items: center;
       }
     </style>
   </head>
@@ -64,7 +84,7 @@
       <div class="el el--4">(4) are</div>
       <div class="el el--5">(5) amazing</div>
       <div class="el el--6">(6) languages</div>
-      <div class="el el--7">(7) to</div>
+      <!-- <div class="el el--7">(7) to</div> -->
       <div class="el el--8">(8) learn</div>
     </div>
 

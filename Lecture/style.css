@@ -201,6 +201,7 @@ footer {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  gap: 15px;
 }
 .related {
   display: flex;
@@ -221,6 +222,7 @@ footer {
   display: block;
   margin-bottom: 5px;
 }
+/*
 .main-container {
   display: flex;
   justify-content: space-between;
@@ -233,4 +235,16 @@ article {
 aside {
   flex: 0 0 25%;
   align-self: flex-start;
+} */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  column-gap: 75px;
+  row-gap: 60px;
+}
+aside {
+  align-self: start;
+}
+article {
+  margin-bottom: 0;
 }
