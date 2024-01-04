@@ -33,7 +33,7 @@ body {
 
 header,
 section {
-  margin-bottom: 48px;
+  margin-bottom: 96px;
 }
 
 h2 {
@@ -89,10 +89,11 @@ header {
 }
 
 h1 {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   font-size: 44px;
   line-height: 1.1;
   letter-spacing: -1px;
+  /* text-shadow: 0 10px 10px rgb(0, 0, 0); */
 }
 
 .header-text {
@@ -106,7 +107,11 @@ img {
 }
 
 /* FEATURES */
-.features-icon {
+.feature-icon {
+  stroke: #087f5b;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 24px;
 }
 
 .features-title {
@@ -144,6 +149,9 @@ img {
 }
 
 /* CHAIRS */
+.chair {
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.3);
+}
 .chair-box {
   padding: 24px;
 }
@@ -170,6 +178,9 @@ h3 {
 }
 
 .chair-icon {
+  stroke: #087f5b;
+  width: 32px;
+  height: 32px;
 }
 
 .chair-price {
