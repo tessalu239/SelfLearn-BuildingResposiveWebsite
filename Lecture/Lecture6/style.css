@@ -16,14 +16,14 @@ GREY COLOR:#343a40
   padding: 0;
   box-sizing: border-box;
 }
-/* --------------------- */
-/*     GENERAL STYLE     */
-/* --------------------- */
 body {
   font-family: "Inter", sans-serif;
   color: #343a40;
-  border-bottom: 8px solid #087f5b;
+  /* border-bottom: 8px solid #087f5b; */
 }
+/* --------------------- */
+/*       ACCORDION       */
+/* --------------------- */
 .accordion-container {
   width: 80%;
   margin: 100px auto;
@@ -89,4 +89,83 @@ body {
 .selected-text {
   color: #087f5b;
   stroke: #087f5b;
+}
+/* --------------------- */
+/*       CAROUSEL        */
+/* --------------------- */
+.icon {
+  stroke: #087f5b;
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 150px;
+  vertical-align: middle;
+  padding: 8px;
+  position: absolute;
+  box-shadow: 0 0 32px;
+}
+.left {
+  top: 45%;
+  left: -19px;
+}
+.right {
+  top: 45%;
+  right: -19px;
+}
+.carousel-container {
+  width: 80%;
+  margin: 100px auto;
+  margin-bottom: 0;
+  background-color: #087f5b;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 64px;
+  position: relative;
+  border-radius: 8px;
+  padding: 32px 48px;
+  position: relative;
+}
+.carousel-container img {
+  position: absolute;
+  box-shadow: 0 0 32px;
+  height: 320px;
+  width: auto;
+  top: -25px;
+  left: 50px;
+}
+.feedback {
+  grid-column: 2/6;
+}
+.feedback p {
+  color: #96f2d7;
+  line-height: 1.5;
+}
+.author {
+  font-size: 16px;
+  font-weight: 500;
+}
+.author-title {
+  font-size: 14px;
+}
+.feedback blockquote {
+  color: #e6fcf5;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.author-photo {
+  border-radius: 10px;
+}
+.slide-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.icon-dot {
+  width: 52px;
+  height: 52px;
+  margin: -15px;
 }
