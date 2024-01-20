@@ -6,21 +6,28 @@
 
 - Font weight:
 Default: 400
+Medium:500
+Semi-bold:600
+Bold: 700
 
 - Line weight: 
 Default: 1
+1.05
+1.6
 
 
 --- 02 COlors
 
 - Primary: #e67e22
-- Tints
-- Accents:
+- Tints: #fdf2e9
+- Shades: #cf711f
+- Accents: 
 - greys: #555, #333
 
 --- 05 SHADOWS
 
 --- 06 BORDER-RADIUS
+default: 9px;
 
 --- 07 WHITESPACE
 - SPACING SYSTEM (px)
@@ -32,13 +39,13 @@ html {
   /*if set like this will be hard code, should use percentage, suggest use 10px-> 10px/16px= 0.625 -> 62.5% : this percentage mean percentage of user's browser font-size setting*/
 }
 * {
-  padding: 0;
+  padding: 0;F
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Rubik", sans-serif;
   line-height: 1;
   font-weight: 400;
   color: #555;
@@ -48,23 +55,13 @@ body {
   padding: 100px;
   /* max-width: 1000px; important */
 /* max-width: 50rem;
-padding: 4rem;
-font-size: 2rem; */
+  padding: 4rem;
+  font-size: 2rem; */
 /* by default: 1 rem = 16px -> 50rem=800px; */
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 130rem;
-  margin: 0;
-  gap: 9.6rem;
-  align-items: center;
-}
-.section-hero {
-  background-color: #fdf2e9;
-  padding: 9.6rem 0;
-}
-
+/******************************/
+/*     GENERAL COMPONENTS     */
+/******************************/
 .heading-primary {
   font-size: 5.2rem;
   font-weight: 700;
@@ -72,11 +69,6 @@ font-size: 2rem; */
   color: #333;
   letter-spacing: -0.5px;
   margin-bottom: 3.2rem;
-}
-.hero-description {
-  font-size: 2rem;
-  line-height: 1.6;
-  margin-bottom: 4.8rem;
 }
 
 .btn:link,
@@ -86,8 +78,9 @@ font-size: 2rem; */
   color: #fff;
   text-decoration: none;
   font-size: 2rem;
+  font-weight: 600;
   padding: 1.6rem 3.2rem;
-  border-radius: 150px;
+  border-radius: 9px;
 
   transition: background-color 0.3s;
 }
@@ -121,4 +114,112 @@ font-size: 2rem; */
 
 .margin-right-sm {
   margin-right: 1.6rem !important;
+}
+/******************************/
+/*           HEADER           */
+/******************************/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdf2e9;
+  /* because we want header to be sticky later */
+  height: 9.6rem;
+  padding: 0 4.8rem;
+}
+.logo {
+  height: 2.2rem;
+}
+
+/******************************/
+/*         NAVIGATION         */
+/******************************/
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 3.2rem;
+}
+.nav-items:link,
+.nav-items:visited {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #555;
+  transition: all 0.3s;
+}
+.nav-items:hover,
+.nav-items:active {
+  color: #cf711f;
+}
+
+.nav-items.nav-cta:link,
+.nav-items.nav-cta:visited {
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  color: #fff;
+  background-color: #e67e22;
+}
+.nav-items.nav-cta:hover,
+.nav-items.nav-cta:active {
+  background-color: #cf711f;
+}
+
+/******************************/
+/*            HERO            */
+/******************************/
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 3.2rem;
+  gap: 9.6rem;
+  align-items: center;
+}
+.section-hero {
+  background-color: #fdf2e9;
+  padding: 4.8rem 0 9.6rem 0;
+}
+
+.hero-description {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+}
+
+.delivered-meals {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 8rem;
+}
+.delivered-img {
+  display: flex;
+}
+.delivered-meals img {
+  height: 4.8rem;
+  width: 4.8rem;
+  border-radius: 50%;
+  margin-right: -1.6rem;
+  border: solid 3px #fdf2e9;
+}
+.delivered-meals img:last-child {
+  margin-right: 0;
+}
+.delivered-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.highlight-text {
+  color: #cf711f;
+  font-weight: 700;
+}
+
+/******************************/
+/*    HOW IT WORKS SECTIONS   */
+/******************************/
+.section-how{
+  padding: 9.6rem 0;
+  background-color: orangered;
 }
