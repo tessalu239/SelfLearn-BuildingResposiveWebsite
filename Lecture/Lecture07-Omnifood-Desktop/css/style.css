@@ -464,9 +464,14 @@ strong {
 /*   TESTIMONIAL SECTIONS     */
 /******************************/
 .section-testimonials {
-  padding: 9.6rem 0;
+  background-color: #fae5d3;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
 }
-
+.testimonial-container {
+  padding: 0 9.6rem;
+}
 .testimonials {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -485,5 +490,23 @@ strong {
 }
 .testimonial-name {
   font-size: 1.6rem;
-  color: #777;
+  color: #6f6f6f;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  padding: 1.6rem;
+}
+.gallery-item img {
+  display: block;
+  width: 100%;
+  transition: all 0.4s;
+}
+.gallery-item {
+  overflow: hidden;
+}
+.gallery-item img:hover {
+  transform: scale(110%);
 }
