@@ -216,6 +216,7 @@ strong {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  line-height: 1.2;
 }
 .list-icon {
   height: 3rem;
@@ -250,8 +251,8 @@ strong {
 .main-nav ul {
   display: flex;
   list-style: none;
-  gap: 3.2rem;
-  padding: 3.2rem;
+  align-items: center;
+  gap: 4.8rem;
 }
 .nav-items:link,
 .nav-items:visited {
@@ -277,6 +278,8 @@ strong {
 .nav-items.nav-cta:active {
   background-color: #cf711f;
 }
+
+/* MOBILE */
 
 /******************************/
 /*            HERO            */
@@ -495,7 +498,7 @@ strong {
   align-items: center;
 }
 .testimonial-container {
-  padding: 0 9.6rem;
+  padding: 9.6rem;
 }
 .testimonials {
   display: grid;
@@ -632,7 +635,7 @@ strong {
 /*         CTA SECTION        */
 /******************************/
 .section-cta {
-  padding: 9.6rem 0;
+  padding: 8.8rem 0 12.8rem 0;
 }
 
 .cta {
@@ -642,7 +645,7 @@ strong {
   border-radius: 11px;
 
   background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
-  height: 50rem;
+  height: 50%;
   overflow: hidden;
 }
 .cta-text-box {
@@ -703,7 +706,15 @@ strong {
 /*           FOOTER           */
 /******************************/
 .footer {
-  padding: 9.6rem 0;
+  padding: 12.8rem 0;
+  border-top: 1px solid #eee;
+}
+.grid--footer {
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+}
+.logo-col {
+  display: flex;
+  flex-direction: column;
 }
 .footer-logo {
   display: block;
@@ -723,12 +734,13 @@ strong {
   font-size: 1.4rem;
   line-height: 1.6;
   color: #767676;
+  margin-top: auto;
 }
 .social-icon {
   height: 2.4rem;
   width: 2.4rem;
 }
-.footer.nav {
+.footer-nav {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -745,4 +757,12 @@ strong {
 .footer-link:hover,
 .footer-link:active {
   color: #555;
+}
+.contacts {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-style: normal;
+}
+.address {
+  margin-bottom: 2.4rem;
 }
