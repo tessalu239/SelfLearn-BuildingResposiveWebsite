@@ -97,4 +97,55 @@ Instead 1rem* 1em=16px */
   }
 
   /* MOBILE NAVIGATION */
+  .main-nav {
+    background-color: rgb(255, 255, 255, 0.97);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+
+    /* Hide navigation */
+    /* we can use display:none but it will Allows NO transitions at all */
+    /* Better way will be following steps:*/
+    /* 1. hide it visually */
+    opacity: 0;
+
+    /* 2.Make it unaccessible to mouse and key */
+    pointer-events: none;
+
+    /* 3. Hide it from screen reader */
+    visibility: hidden;
+  }
+  .nav-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  .nav-open .icon-mobile-nav[name="close-outline"] {
+    display: block;
+  }
+
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .btn-mobile-nav {
+    display: block;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+  .nav-items:link,
+  .nav-items:visited {
+    font-size: 3rem;
+  }
 }
