@@ -1,8 +1,7 @@
 'use strict';
-'use strict';
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-console.log(secretNumber);
+// console.log(secretNumber);
 
 let score = document.querySelector('.score').textContent;
 
@@ -55,4 +54,6 @@ document.querySelector('.again').addEventListener('click', () => {
   document.querySelector('.number').style.width = '15rem';
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   console.log(secretNumber);
+  document.querySelector('.guess').value = '';
+  document.querySelector('.number').textContent = '?';
 });
