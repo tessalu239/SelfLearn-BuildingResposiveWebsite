@@ -1,11 +1,13 @@
 'use strict';
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-// console.log(secretNumber);
-
 let score = document.querySelector('.score').textContent;
-
 let highscore = document.querySelector('.highscore').textContent;
+
+//function for selecting the message element ad display the message
+const displayMessage = message => {
+  document.querySelector('.message').textContent = message;
+};
 //Take input from the user
 document.querySelector('.check').addEventListener('click', () => {
   //converting the input into number
@@ -14,32 +16,12 @@ document.querySelector('.check').addEventListener('click', () => {
 
   //invalid input (empty, NaN)
   if (!input) {
-    document.querySelector('.message').textContent = '⛔ No number yet';
+    displayMessage('⛔ No number yet');
   } else {
-    /*if number is valid*/
-    /*if number is higher*/
-    if (input > secretNumber) {
-      document.querySelector('.message').textContent = '📈 Too high';
-      if (score > 0) {
-        score--;
-        document.querySelector('.score').textContent = score;
-      } else {
-        document.querySelector('.message').textContent =
-          'Sorry, you are lost 🥺';
-      }
-    } else if (input < secretNumber) {
-      /*if number is lower*/
-      document.querySelector('.message').textContent = '📉 Too low';
-      if (score > 0) {
-        score--;
-        document.querySelector('.score').textContent = score;
-      } else {
-        document.querySelector('.message').textContent =
-          'Sorry, you are lost 🥺';
-      }
-    } else if (input === secretNumber) {
+    //if the input is valid
+    if (input === secretNumber) {
       /*if number is matched*/
-      document.querySelector('.message').textContent = '🎉 Congratulation';
+      displayMessage('🎉 Congratulation');
       //Release the secret number
       document.querySelector('.number').textContent = secretNumber;
       //change background if the number match
@@ -49,6 +31,14 @@ document.querySelector('.check').addEventListener('click', () => {
       if (score > highscore) {
         highscore = score;
         document.querySelector('.highscore').textContent = highscore;
+      }
+    } else if (input !== secretNumber) {
+      displayMessage(input > secretNumber ? '📈 Too high!' : '📉 Too low!');
+      if (score > 1) {
+        score--;
+        document.querySelector('.score').textContent = score;
+      } else {
+        displayMessage('You lost the game 🥺');
       }
     }
   }
