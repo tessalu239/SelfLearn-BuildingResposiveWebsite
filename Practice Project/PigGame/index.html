@@ -8,6 +8,40 @@
     <title>Pig Game</title>
   </head>
   <body>
+    <div class="modal hidden">
+      <button class="close-modal">&times;</button>
+      <h1>❔How to play the "Pig Game"</h1>
+      <p>
+        <strong> Objective</strong>: The goal is to be the first player to reach
+        or exceed a certain number of points, usually 100. <br />
+
+        <strong> Gameplay</strong>: Players take turns rolling the die. On a
+        turn, a player rolls the die and accumulates points as follows: <br />
+        - If the player rolls a 1, they score no points for that turn, and it
+        becomes the next player's turn. <br />
+        - If the player rolls a number other than 1, they can choose to: <br />
+        &nbsp; &nbsp; &nbsp; &nbsp;End their turn and keep the points rolled
+        during that turn.<br />
+        &nbsp; &nbsp; &nbsp; &nbsp;Roll the die again and potentially accumulate
+        more points. <br />
+        <strong> Accumulating Points </strong>: As long as the player continues
+        to roll numbers other than 1, they keep accumulating points on that
+        turn. They can roll as many times as they want on their turn until they
+        choose to end their turn or roll a 1. <br />
+        <strong>Ending Turn</strong>: A player can choose to end their turn at
+        any point before rolling a 1. If they do so, they add all the points
+        accumulated during that turn to their total score. <br /><strong
+          >Rolling a 1</strong
+        >: If a player rolls a 1, they lose all the points accumulated during
+        that turn, and their turn ends. It becomes the next player's turn.
+        <br />
+        <strong>Winning the Game</strong>: The first player to reach or exceed
+        the target score (usually 100) wins the game. If multiple players reach
+        the target score in the same round, the player with the highest score
+        wins.
+      </p>
+    </div>
+    <div class="overlay hidden"></div>
     <main>
       <section class="player player--0 player--active">
         <h2 class="name" id="name--0">Player 1</h2>
@@ -31,6 +65,7 @@
       <button class="btn btn--new">🔄 New game</button>
       <button class="btn btn--roll">🎲 Roll dice</button>
       <button class="btn btn--hold">📥 Hold</button>
+      <button class="btn how-to-play">❓ How to play</button>
     </main>
     <script src="script.js"></script>
   </body>
