@@ -1,54 +1,81 @@
 'use strict';
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+const btnNew = document.querySelector('.btn--new');
+
 const dice = document.querySelector('.dice');
-const rollBtn = document.querySelector('.btn--roll');
-const active = document.querySelector('.player--active');
-const player1 = document.querySelector('.player--0');
-const player2 = document.querySelector('.player--1');
-const player = document.querySelectorAll('.player');
-const currentScore = document.querySelectorAll('.current-score');
-const holdBtn = document.querySelector('.btn--hold');
-const score = document.querySelectorAll('.score');
-let sumCurrent = 0;
+const scoreP0 = document.querySelector('#score--0');
+const scoreP1 = document.querySelector('#score--1');
+const p0 = document.querySelector('.player--0');
+const p1 = document.querySelector('.player--1');
+const currentP0 = document.querySelector('#current--0');
+const currentP1 = document.querySelector('#current--1');
 
-//Rolling the dice functionality
-rollBtn.addEventListener('click', () => {
-  const randomNumber = Math.trunc(Math.random() * 6 + 1);
-  dice.src = `dice-${randomNumber}.png`;
-  //processing purpose
-  console.log(randomNumber);
+let scores, activeP, sumCurrent, play;
+//Starting condition
+const init = () => {
+  scores = [0, 0];
+  sumCurrent = 0;
+  activeP = 0;
+  play = true;
 
-  //checking which user is playing and add points
-  if (dice.classList.contains('hidden')) dice.classList.remove('hidden');
-  for (let i = 0; i < player.length; i++) {
-    if (player[i].classList.contains('player--active')) {
-      if (randomNumber !== 1) {
-        sumCurrent += randomNumber;
-        currentScore[i].textContent = sumCurrent;
-      } else {
-        sumCurrent = 0;
-        currentScore[i].textContent = sumCurrent;
-        player[i].classList.remove('player--active');
-        //switching player if 1 is rolled
-        player[i === 0 ? 1 : 0].classList.add('player--active');
-        break;
-      }
+  scoreP0.textContent = 0;
+  scoreP1.textContent = 0;
+  currentP0.textContent = 0;
+  currentP1.textContent = 0;
+
+  dice.classList.add('hidden');
+  p0.classList.remove('player--winner');
+  p1.classList.remove('player--winner');
+  p0.classList.add('player--active');
+  p1.classList.remove('player--active');
+};
+init();
+
+const switchP = () => {
+  sumCurrent = 0;
+  document.querySelector(`#current--${activeP}`).textContent = 0;
+  activeP = activeP === 0 ? 1 : 0;
+  p0.classList.toggle('player--active');
+  p1.classList.toggle('player--active');
+};
+
+//Rolling btn functionality
+btnRoll.addEventListener('click', () => {
+  if (play) {
+    dice.classList.remove('hidden');
+    // 1.generate a random dice roll
+    let randomNumber = Math.trunc(Math.random() * 6) + 1;
+    // 2.display the dice
+    dice.src = `/dice-${randomNumber}.png`;
+    // 3. check for rolled 1, switch to the other player
+    if (randomNumber !== 1) {
+      sumCurrent += randomNumber;
+      document.querySelector(`#current--${activeP}`).textContent = sumCurrent;
+    } else {
+      switchP();
     }
   }
 });
 
-//Hold button functionality
-// holdBtn.addEventListener('click', () => {
-//   for (let i = 0; i < player.length; i++) {
-//     if (player[i].classList.contains('player--active')) {
-//       let valueScore = Number(score[i].textContent);
-//       valueScore += Number(currentScore[i].textContent);
-
-//       score[i].textContent = valueScore;
-//       currentScore[i].textContent = 0;
-//       // sumCurrent = 0;
-//       player[i].classList.remove('player--active');
-//       player[i === 0 ? 1 : 0].classList.add('player--active');
-//       break;
-//     }
-//   }
-// });
+//Hold btn functionality
+btnHold.addEventListener('click', () => {
+  if (play) {
+    scores[activeP] += sumCurrent;
+    document.querySelector(`#score--${activeP}`).textContent = scores[activeP];
+    if (scores[activeP] >= 20) {
+      play = false;
+      document
+        .querySelector(`.player--${activeP}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activeP}`)
+        .classList.remove('player--active');
+      dice.classList.add('hidden');
+    } else {
+      switchP();
+    }
+  }
+});
+//New game btn functionality
+btnNew.addEventListener('click', init);
