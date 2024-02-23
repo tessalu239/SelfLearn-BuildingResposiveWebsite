@@ -1,6 +1,12 @@
 .navbar .btn-outline-light:hover {
   color: var(--bs-dark);
 }
+.navbar {
+  transition: all 0.5s;
+}
+.transparent {
+  opacity: 0.9;
+}
 .header {
   background: url("../images/header-background.jpg");
   background-size: cover;
@@ -13,4 +19,11 @@
   .hero .text-container {
     text-align: center;
   }
+}
+.modal-dialog {
+  max-width: 1040px;
+}
+.download {
+  background: url("../images/download-background.jpg") center center no-repeat;
+  background-size: cover;
 }
