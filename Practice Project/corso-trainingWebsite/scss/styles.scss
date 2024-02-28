@@ -9,6 +9,10 @@
     url("../images/header-background.jpg") center center no-repeat;
   background-size: cover;
 }
+.header .slide {
+  width: 90%;
+  margin: 0 auto;
+}
 @media (max-width: 992px) {
   .navbar {
     background: var(--bs-dark);
