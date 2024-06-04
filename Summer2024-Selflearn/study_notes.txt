@@ -1,0 +1,169 @@
+2 types of packages that we can install are:
+- simple (regular) dependencies: contain some code that we will include in our own code. So code upon which we built our own application, that why we call it dependencies bc our project and our code depend on them to work correctly. EX: Express, which is the Node framework
+ex: slugify- regular dependency
+- development dependencies: usually just tools for development, ex: a code bundler like Webpack, like debugger tool or a testing library. They are not neede for production. Means our code is not really depended on them, we simply use them to develop our application
+!!! to save it as development dependencie remember after the install command, having "--save-dev". Example: npm install nodemon --save-dev (automatically restart the sever the change)
+
+Nodemon: When we use command npm install packageName --> we only install it locally, it will work on the project but nowhere else
+
+
+----OVERVIEW OF HOW THE WEB WORK----
+
+Ex: https://www.google.com/maps
+-protocol: Http or Https
+-domain name: Domain name
+-resource: maps
+
+--->we need a way of kind of converting the domain name to real address of the server and that happens through a DNS (Domain Name Server- can think like a phone-book for internet)
+--First step: 
+	When we open up a website is the browser makes a request to a DNS and this special server will then simply match the web address that we typed into the browser to the server's real IP address.
+!!! the domain is not the real adress and DNS will convert it to the real IP address
+	After returning from the DNS: the name will become something like http://216.58.211.206:433
+-Protocol: Http or https
+-IP address: 216.58.211.206
+-Port number: default 443 for Http or Https--> has nothing to do with the google Maps resource that we wanted to access
+
+--Second Step: once we have the real web address, a TCP/IP (Transmission Control Protocol/Intenet Protocol- basically they are internet fundamental control system- who set the rules how data moves on the internet) socket connection is established between the browser and the server, which are now finally connected
+
+--Third step: make a request: the request that we make is an HTTP (HyperText Transfer Protocol) request 
+Start line: GET /maps HTTP/1.1 ( HTTP method + request target + HTTP version)
+there is many many method, but most important ones are:
+-GET : requesting data
+-POST: sending data 
+-PUT : modify data
+HTTP request headers (many different possibilities):
+- Host: www.google.com
+- User-Agent: Mozilla/5.0
+- Accept Language: en-US
+
+Request body (only when sending data to server, eg:POST)
+<BODY>
+---> communication protocol is simply a system of rules allowing 2 or more parties to communicate
+Example: in case of the HTTP, it's just protocol that allows clients and web servers to communicate by sending requests and response messages from client to server and back
+
+--Forth Step: getting HTTP response
+Start line: HTTP/1.1 200 OK ( HTTP version + status code + status message)
+HTTP response Headers(many different possibilities):
+- Date: Fri, 18 Jan 2021
+- Content-Type:  text/html
+- Transfer-Encoding: chunked
+Response body (most responses)
+<BODY> (should contain the HTML of the website we requested or, for exampla, JSON data coming back from an API or something like that)
+
+--Fifth step: 
+index.html is the first to be loaded-> scanned for assets: JS, CSS, images -> process is repeated for each file
+
+----HOW NODE.JS WORK: BEHIND THE SCENCE----
+1. Node Architecture
+- In term of Node's dependencies, which are just a couple of libraries, that Node depends on in order to work properly. 
+- Having several runtime dependencies, and the 2 most important ones are V8(mumbles) and libuv
+	+ V8- Fundamental part of Node architecture: Node is a Javascript run time based on Google's V8 engine -> so that's why V8 appears here as a dependency. If it wasn't for V8, Node would have absolutely no way of understanding the JavaScript code that we write
+->V8 engine is what converts JS code into machine code that a computer can actually understand. Written uses C++ & JS
+	+ Libuv- open source library with a strong focus on asynchronous IO(input/output): this layer  is what gives Node access to the undelying computer operating system, file system, networking and more. Written in C++ NOT JS. Also implements 2 extremely important features of Node.js, which are :
+	= Event loop: is responsible for handling easy tasks like executing call backs and network IO
+	= Thread pool: is for more heavy work like file access or compression or somthing like that
+
+2. Processes threads and the thread pool
+- A process: is just a program in execution.
+- A thread: is basically just a sequence of instructions
+--> The fact that Node runs in just one single thread, which makes it easy to block Node application. So when the program is initialized, all the top level code is executed, which means all the code that is not inside any callback function. Also, all the modules that your app needs are required and all the callbacks aew registered. Then after all that, the event loop finally starts running.!!! most of the work is done here-> it's really the heart of the entire Node architecture.
+---> HOWEVER, some tasks are actually too heavy to be executed in the event loop bc they would block the single thread--> thread pool comes in to give us 4 ADDITIONAL THREADS ( can be configure it up to 128 threads). any heavy tasks will be offloaded automaticall to the thread pool
+
+3. Node JS Event Loop:
+----- Event loop: 
+- Event loop is were all the application code that is inside callback function is executed ( all code that is not top level code will run in the event loop)
+- Node JS is built around callback functions
+- Node uses an event-driven architecture:
+	+Events are emitted
+	+Event loops picks them up
+	+Callbacks are called
+-When we start the application, the event loop starts running right away, and it has multiple phases ( each phase has a callback queue)
+----- Phases:
+First: taking care of callbacks of expired timers.
+	Eg: setTimeout() function --> so, if there are callback functions from timers that just expired, these are the first ones to be processed by the event loop. So if  a timer expires later during the time when one of the other phases are being processed-> then the callback of the timer will only be called as soon as the event loop comes back to this first phase
+	-> Callbacks in each queue are processed one by one until there are no ones left in the queue, and only then, the event loop will enter the next phase.
+
+Second: I/O polling and callbacks-> polling: looking for new I/O events that ready to be processed and putting them into the callback queue
+
+Third: Setlmmediate callbacks-> setlmmediate is special kind of timer that we can use if we want to process callbacks immediately after I/O polling and execution phase
+
+Final: close callbacks
+	Eg: a web server or a WebSocket shut down
+
+4.Events and Event-driven Architecture:
+Event emitter--> Event listenier --> attached callback function
+----- Event emitters:
+- emit named events as soon as something important happens in the app ( such as a request hitting server, ot a timer expiring, or like a file finishing to read)
+- These events can then be picked up by event listeners
+
+----- Event listener:
+- event listener is ones that we developers set up, which will fire off callback functions that are attached to each listener
+
+Example: Code to create a server:
+const server= http.createServer();
+server.on('request', (req,res) => {
+	console.log('Request received');
+	res.end('Request received');
+});
+-This server.on method is how we create a listener, 'request' is an event
+- Let's say we have a server running, and a new request made. The server acts as an emitter, and will automatically emit an event called "request" each time that a request hits the server
+- Then, since we already have a listener set up for this exact event, the callback function that we attached to this listener will automatically be called
+
+5. Streams:
+- Stream: used to process (read and write) data piece by piece (chunks), without completing the whole read or write operation, and therefore without keeping all the data in the memory
+	Example: when we read a file using streams, we read part of the data, do something with it, then free our memory, and repeat this until the entire file has been processed
+	Example: Netflix or Youtube- streaming companies bc they stream video using the same principle--> So, instead of waiting until the entire video file loads, the processing is done piece by piece or in chunkcs so that you can start watching even before the entire file has been downloaded
+
+- in Node, there are 4 fundamental types of stream:
+	+ Readable stream: streams that we can read(consume) the data
+			Example: http request, fs read stream
+			Important events: data, end
+			important functions: read() ,pipe()- allows us to plug streams together, passing data from one stream to another w/o having to worry much about events at all
+	+ Writable stream: steams to which we can write data
+			Example: http responses, fs write stream
+			Important events: drain, finish
+			important functions: write(), end()
+	+ Duplex stream: stream that are both readable and writable
+			Example: net web socket
+	+ Transform stream: Duplex streams that transform data as it is writen or read
+			Example: z lib Gzip creation
+
+6. How Requiring Modules Really Work
+---- The commonJS module system:
+- Each JS file is treated as a seperate module
+- Node.js uses the CommonJS module system: require(), exports or module.exports;
+- ES module system is used in browsers: import/export;
+- There have been attempts to bring ES module to node.js(.mjs)
+
+---- What happens when we require() a module: 
+Resolving& loading -> wrapping -> execution -> returning exports ->caching
+
+First: How does Node know which file to load when we require a module? 
+- Note: we have 3 dif kinds of modules:
+	+ Core module: require('http')
+	+ Developer module: require('./lib/controller');
+	+ 3rd party modules (from NPM): require('express');
+--> This process is known as resolving the file path: How node decides which module to load: 1.Start with core modules-> 2. If begins with './' or '../' , it will try to loaad developwe module -> 3. if no file found, it will try to find with index.js in it -> 4. els, it will go to node.moduls/ and try to fin module there.
+
+Second: Where does the require function actually come from and why do we have access to it?
+
+--> after the module is loaded, the module's code is wrapped into a special function which will give us access to a could of special objects. It because the nodejs run time, take the code off out module and puts it inside the immediately invoked function expression, or IIFE 
+(function(exports, require, module, __filename, __firname){
+	//Module code lives here...
+});
+So node actually doesn't directly execute the code that I rewrite into a file, but instead the wrapper function that will contain our code in its body. It also passes the export, require, module, filename, dir object into it, so that is why in every module we automatically have access to stuff like 'require' funtion-> so these are basically like global variables that are injected into each and every module. By doing it, it achives 2 things:
+	1. giving developes access to all these variables we just talked about, which is very helpful
+	2. it keeps the top-level variables that we define in our modules private, it's scoped only to the current module instead of leaking everything into the global object.
+		example: we declared a variable x in one of our modules and then included an npm module that also used a variable called x-> without this mechanism, out own variable would then get overridden and the entire app would just not work. So each modulehaving its private scope is absolutely crucial and is achieved through this clever trick of wrapping out code into this special function
+
+Third: the code in the module, ot to be more precise, in the module's wrapper function, actually gets executed by the NODE.JS runtime
+
+Forth: 'require' function returns something ( the exports of the require module)
+
+Last: module are actually cached after the first time they are loaded -> if you require the same module multiple times, you will always get the same result (the code in the modules is actually only executed in the first call)
+
+
+ 
+
+
+
