@@ -163,7 +163,80 @@ Forth: 'require' function returns something ( the exports of the require module)
 Last: module are actually cached after the first time they are loaded -> if you require the same module multiple times, you will always get the same result (the code in the modules is actually only executed in the first call)
 
 
- 
+
+----ASYNCHRONOUS JAVASCRIPT: PROMISES AND ASYNC/AWAIT----
+1. The problem with Callbacks: callback Hell: callbacks nest inside callbacks will create a triangle=> they make our code look a bit messy and it makes code difficult to understanda nd also in general, hard to maintain===> HELL
+
+2. From Callbacks Hell to Promises:
+- A promise is basically implemented the concept of a future value( the value that we expecting to receive some time in the future)
+- We can imagine we saying " Hey server, please get me a random dog image in the background and let me know when you're ready and then give me that data back"
+==> So, the promise doesn't have a value yet, because the server actually still getting the data from the server asynchronously in the background but the promises is immediately available and basically promisng us that it will get some date back in the future
+==> Promises as soon as it comes back with the data is called a resoled promise ( can be either successful : fulfilled promises, or error: rejected promises
+
+----EXPRESS: LET'S START BUILDING THE NATOUR API----
+1. What is Express?
+- Express is a minimal node.js framework, a higher level of abstraction
+- Express contains a very robust set of features: complex routing, easier handling of requests and responses, middleware, server-side rendering,etc;
+- Express allows for rapid development of node.js application: we don't have to re-invent the wheel
+- Express makes it easier to organize our application into the MVC architecture
+
+2. APIS and Restful API Design
+- API- Application Programming Interface: a piece of software that can be used by another piece of software, in order to allow application to talk to each other
+	Example: Web API: the most widely used type of API out there. In fact, APISs aren't only used to send data, and aren't always realated to web development or Javascript...
+-----> Application: in API, an application means many different things as long as the piece of software is relatively stand alone. We can say that they are small pieces of software and we can use them, we can interact with them by using their API
+	Example of application: Node File System, or HTTP Modules
+	Example of applicatio interact with API: 
+		1. When we use readfile function from the FS Module, we are actually using the FS API -> that's why sometimes we hear the term node APIs and that usually simply refers to the core node modules that we can interact with.
+		2. When we do DOM manipulation in the browser, we are not really using the Javascript language itself, but rather, the DOM API that the browser exposes to us, so it gives us access to it
+		3. let's say we create a class in any programming language like Java and then add some public methods or properties to it. THese methods will then be the API of each object create from that class becasue we're giving other pieces of software the possibility of interacting with out initial piece of software, the objects , in this case.
+
+- REST- Representational States Transfer: basically a way of building web APIs in a logical way, making them easy to consume because remember, we build an API for ourselves or for others to consume. we want to make the process of actually using the API as smooth as possible for the user
+---> To build RESTful APIs means APIs following the REST architecture
+	1. separate API into logical resources
+	2. expose structure, resource-based URL (means to be made available)
+	3. use HTTP methods( verbs)
+	4. sebd data as JSON (usually)
+	5. Must be stateless
+	--> Resource: Object or representation of something, which has data associated to it. Any information that can be named can be a resource  ( eg: tours, users, reviews...). !!! MUST be a NOUN, NOT a VERB
+	--> Expose -Make it available: the data using some structured URLS that te client cna send a request to. Eg: URL: https://www. natours.com/<endpoint>
+		---> endpoint: should only contain resources(nouns). and use HTTP methods for action
+		Example and explanation:
+		/getTour: to read data from the tour ---> GET /tours"/7"->tour id
+		/addNewTour: to create data about the new tour ---> POST/tours -> no ID will be sent bc the browser should figure out the new id of the new added
+		/updateTour: to update the data --->entirely:  PUT /tours/id or just a part: PATCH /tours/id
+		/deleteTour: to delete the data --->DELETE /tours/id
+	--> JSON: a very lightweight data interchange format which is heavily used by web APIs coded in any programming language. It's so widely used today because it's really easy for both humans and computers to understand and write JSON
+	--> Stateless RESTful API: all state is handled on the client. This means that each request must contain all the information necessary to process a certain request. The server should not have to remember previous request ( eg: loggedIn, currentPage)
+
+3. Handling POST request:
+- POST request: we can send dtaa from the client to the server. This data is then ideally available on the request. The request object again is what holds all the data, all the information, about the request that was done. If that request contains some data that was sent, that data should be on the request. Now out of the box, Express does not put that body data on the request, and in order to hace that data available, we have to use somthing called middleware
+- Middleware: a function that can modify the incoming request data. It's called middleware because it stands between, so in the middle of the request and the response, and it's just a step that the request goes through while it's being processed
+
+4. Middleware and The Request-Response Cycle
+- To start the request-response cycle, or Express app receives a request when someone hits a server for which it will then create a request and response object.
+- There is data will then be used and processed in order to generate and send back a meaningful reponse---> In order to process that data, in Express we use something called middleware, which can manipulate the request or the response object.
+- Middleware doesn't alwasy have to be just about the request or the response object, but it's usually is mostly about the request
+	Ex: using middleware :express.json -> get access to the request body on the request object
+- Middleware: it's a function that is executed between, so in the middle of receiving the request and sending the response. So, we can actually say that in Express EVERYTHING is middleware.
+
+INCOMING REQUEST --> //Middleware next() (parsing body) --> //Middleware next()(logging function) --> //Middleware next()(setting headers) --> //Middleware res.send(...)(router) --> RESPONSE
+---------> At incoming request, create request object and response object, both of them gonna go through each middleware (You can think og this whole process as kind of a pipeline where our data go through, so just like its been piped from the request to final response). At the last middleware, will send the response to the client
+
+- Middleware stack: is all the middleware together, the order is the order we define it in the code
+
+5. Creating our own middleware
+app.use((req,res,next)=>{...});
+
+6. Using third-party middleware:
+npm i morgan
+
+7. Create and Mounting Multiple Routers
+- Ultimate goal: create and separate all the code that we have in this file into multiple files -> so what we want, is to have one file that only contains all of tours routes then I want to have another file, which has the routes for the users. And will have a file contains all the route handlers for tours, and another for all route handler for users.
+- So we can say all our routes right now is kinda on a same router, which is the app object --> so if we want to separate these routes into different files, the best way is create one router for each resource
+
+
+
+
 
 
 
