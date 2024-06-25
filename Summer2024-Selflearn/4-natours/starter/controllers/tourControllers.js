@@ -56,8 +56,9 @@ exports.getTour = async (req, res) => {
 };
 exports.addTour = async (req, res) => {
   try {
-    const tour = await Tour(req.body);
-    tour.save();
+    const tour = new Tour(req.body);
+    await tour.save();
+
     res.status(200).json({
       status: 'success',
       data: {
@@ -65,7 +66,7 @@ exports.addTour = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(404).json({
       status: 'fail',
       message: err,
     });
