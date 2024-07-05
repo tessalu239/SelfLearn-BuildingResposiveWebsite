@@ -47,10 +47,6 @@ app.use('/api/v1/users', userRouter);
 
 //all undefined routes
 app.all('*', (req, res, next) => {
-  // const err = new Error(`Can't find ${req.originalUrl} in this server`);
-  // err.statusCode = 404;
-  // err.status = 'fail';
-
   next(new AppError(`Can't find ${req.originalUrl} in this server`, 404));
 });
 
@@ -58,5 +54,3 @@ app.all('*', (req, res, next) => {
 app.use(globalErrorHandler);
 
 module.exports = app;
-
-//Start the server
