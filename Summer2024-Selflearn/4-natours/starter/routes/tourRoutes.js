@@ -1,7 +1,7 @@
 //tours
 const express = require('express');
 const tourController = require('./../controllers/tourControllers');
-
+const authController = require('./../controllers/authController');
 const router = express.Router();
 
 //this middleware only runs when the id parameter is present in the URL
@@ -12,7 +12,10 @@ router
 
 router.route('/tour-stats').get(tourController.getTourStats);
 router.route('/monthly-plan/:year').get(tourController.getMonthPlan);
-router.route('/').get(tourController.getAllTours).post(tourController.addTour);
+router
+  .route('/')
+  .get(authController.protect, tourController.getAllTours)
+  .post(tourController.addTour);
 
 router
   .route('/:id')
