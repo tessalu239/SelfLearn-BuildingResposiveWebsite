@@ -234,9 +234,166 @@ npm i morgan
 - Ultimate goal: create and separate all the code that we have in this file into multiple files -> so what we want, is to have one file that only contains all of tours routes then I want to have another file, which has the routes for the users. And will have a file contains all the route handlers for tours, and another for all route handler for users.
 - So we can say all our routes right now is kinda on a same router, which is the app object --> so if we want to separate these routes into different files, the best way is create one router for each resource
 
+8.Serving static file:
+- static files: the file that are sitting in our file system that we currently cannot access using all routes. Eg: overview.html in public folder
+---> So, if we actually want to access something from our file system, we need to use a built-in Express middleware
+- after serve the static file, why don't we need the name of the folder anymore? -> Simply because when we're open up a URL that it can't find in any of our routes, it will then look in that public folder that we defined and it sets that folder to the root
+
+9. Environment Variables:
+- NodeJS, or Express apps, can run in different environments, and the most important ones are: development environment & production environment
+- Depending on the environment, we might use different databases. Eg: we might turn login on/ off, we might turn debugging on/off, really all kinds of different settings that might change depending on the development that we're in. BY default is development
+- To check: console.log(app.get('env')
+
+
+----INTRODUCTION TO MONGODB----
+- Traditional database is called relational database
+- MongoDB is a database, and it's also called noSQL(no sequel) database
+- In Mongo, each databse can contain one ore more collections (tables). Each collection can contain one or more data structures called documents (a row in the table). Each document contains data about 1 single entity.
+- The collection is like the parent structure that contains all these entities. Eg: a blog collection for all posts, a user collection or a review collection
+
+1.What is MongoDB:
+-MongoDB: is a document database with the scalability and flexibility that you want with the querying and indexing that you need
+-----> Document based: MongoDB stores data in documents( field-value pair data structures, noSQL)
+-----> Scablable: Very easy to distribute data across multiple machines as your users and amount of data grow
+-----> Flexible: No document data schema required, so each document can have different number and type of fields
+-----> Performant: Embedded data models, indexing, sharding, flexible documents, native duplication, etc.
+- Document structure:
+	+BSON( maxSize/document=16MB, uniqueID): data format mongoDB uses for data storage. Like JSON, but typed--> Mongo documents are typed ( means all values will have a data type such as string, Boolean, date...)
+	+fields=columns ; 
+	+Embedding/Denormalizing: Including related data into a single document. THis allows for quicker access and easier data models (it's not always the best solution tho)
+
+
+----USING MONGODB WITH MONGOOSE----
+1. What is Mongoose?
+- Mongoose is an Object Data Modeling(ODM) library for MongoDB and Node.js, a higher level of abstraction
+- Mongoose allows for rapid and simple development of mongoDB database interaction
+- Features: schemas to model data and relationships, easy data validation, simple query API, middleware, etc.
+- Mongoose schema: where we model our data, by describing the structure of the data, default values, and validation
+- Mongoose model: a wrapper for the schema, providing an interface to the database for CRUD operations
+
+2. Create a simple model:
+- Mongoose is all about MODEL
+- Model is like a blueprint that we use to create documents( it's abit like classes in JS) ->use this blueprint in order to create objects
+- To create a model, we need SCHEMA (to set default values, validate the data,etc.) 
+
+3. Intro to Back-End Architecture: MVC, Types of Logic, and more
+- MVC: Model-View- Controller (Business Logic-Presentation Logic- Application Logic)
+-----> Model layer: is concerned with everything about applications data (business logic)
+-----> Controller layer: handle the application's request, interact with models, and send back response to the client (application logic)
+-----> View layer: is necessary if we have graphical interface in our app, consist of the templates used to generate the view, so the website that we're going to send back to the client (presentation logic)
+
+REQUEST--> Router( tourRouter.js,userRouter.js) --> CONTROLLER(tourCOntroller.js, userController.js) -->MODEL (tourModel.js, userModel.js) send back data--> optional:VIEW (overview.pug, tour.pug, login.pug) --> RESPONSE
+
+-Application Logic: what makes the code actually works (eg: a big part of application logic in Express is all about managing requests and responses)--> more about technical stuff
+-----> Code that is only concerned about the application's implementation, not the underlying business problem we're trying to solve (eg: showing/ selling tours, managing stock in the market, organize a library)
+
+- Business Logic: All the code that solves the business problem we set out to solve.
+	Eg: Goal is to show tours to customers and then sell them:
+		+ Creating new tours in the database
+		+ Checking if the user's password is correct
+		+ Validate user input data
+		+ Ensuring only users who bought a tour can review it 
+-----> The code that directly related to the business rules to how the business works, and the business needs, is business logic. 
+
+- Application Logic and Business Logic are almosr impossible to completelly separate, sometimes they will overlap. Do our best to keep: application logic in Controllers/ Business logic in Models
+- Fat models/thin controllers: Should off load as much logic as possible into the models, and keep the conttrollers as simple and lean as possible
+
+4. Aggregation Pipeline: Matching& Grouping
+$unwind: deconstruc an array field from the info documents and then output one document for each element of the array
+$match: select document match the conditions
+
+5. Virtual Properties
+- Basically fields that we can deifne on our schema but that will not be persisted--> means they will not be saved into the database in order to save us some space
+- Usually use for fields that can be derived from one another
+	Eg: a conversion from miles to kilometers => it does NOT make sense to store 2 fields in a database if we can easily convert one to another
+- If we just define the virtual property like this : tourSchema.virtual('durationWeeks').get(funtion(){ return this.duration/7; }) ==> durationWeeks will executes anytime we get the data, but it will be found nowhere in the database==> We need to explicitly define it in our schema that we watne the virtual properties in our output ===> in Mongoose.schema {...,{toJSON:{virtuals: true}, toObject:{virtuals:true}}}
+
+5. Document Middleware:	---hook 'save'
+- Just like Express, Mongoose also has middleware: which make something happen between 2 events
+	eg: Each time a new document is saved to the database, we can run a function between the save command is issued and the actual saving of the document, or also after the actual savin==> g
+- Because we can define middleware functions to run before or after a certain event( eg: saving a document to the database)=> this is the reason why Mongoose middleware is also called pre&post hooks
+- Document Middleware: tourSchema.pre('save',function(){})=> runs before save() and create(), but !!!NOT .insertMany()
+==> This is the document look like right before it saved into the database. So at this point of time, we can still act on the data before it is then saved to the database and that is exactly what we're gonna do now
+tourSchema.post('save',function(){})=> runs after save() and create(), but !!!NOT .insertMany()
+
+6. Query Middleware:	--- hook 'find'
+- Query middleware allows us to run functions before or after a certain query is executed
+
+7. Aggregate Middleware: --- hook 'aggregate'
+
+8.Data Validation in Mongoose --Built-in Validators
+- Validation is basically checking if the enterd values are in the right format for each field in our document schema, and also that values have actually been entered for all the required fields
+- Sanitization is to ensure that the inputted data is basically clean, so that there is no malicious code being injected into our database, or into the application itself--> so that step we removeunwanted characters or even code from the input data
+!!!! Really crucial: NEVER EVER ACCEPT DATA FROM USER AS IT IS 
 
 
 
 
+----ERROR HANDLING WITH EXPRESSION----
+1. Debugging Node.js with ndb:
+- Install the package npm i ndb --global
+- Go to package.json, add to "scripts": "debug": "ndb server.js"--> A headless Chrome should be opened
 
+- Debugging: the fundamental aspect of the debugging is to set break points
+- Breakpoints: are basically the points in our code that we can define in the debugger, wherer our code will then stop running--> it will basically freeze in timeand we can then take a look at all our variables
+
+2. Handling Unhandled Routes:
+- Add this response to your app.js:
+	app.all('*',(req,res,next)=>{
+		res.status(404).json({
+			status: 'fail',
+			message: 'Can't find ${req.originalUrl} on this server
+		});
+	}
+===> Why and How it works? - The idea is that if we are able to reach this point here then it means that the req/res cycle was not yet finished at this point in our code. Because remember that middleware stack in the order that it's defined here in our code, so basically these code that specify the routes run first, and so if the roue was matched here the our request would never even reach this "error code" ===> should always be LAST PART after all other routes 
+
+3. An Overview of Error Handling:
+- OPERATIONAL ERRORS(focus): Problem that we can predict will happen at some point, so we ust need to handle them in advance
+	+ Invalid path accessed
+	+ In valid user input (validator error from Mongoose)
+	+ Failed to connect server
+	+ Fail to connect database
+	+ Request timeout
+
+- PROGRAMMING ERRORS: Bugs that we developers introduce into our code. Difficult to find and handle
+	+ Reading properties on undefined
+	+ Passing a number where an object is expected
+	+ Using await without async
+	+ Using req.query instead of req
+	+
+
+
+4. Implement A Global Error Handling Middleware
+- The goal is to write a error middleware is gonna be able to handle operational errors --> any types of errors is in 1 central place
+- Error Middleware function:
+ 
+	app.use((err, req,res,next)=>{
+		err.statusCode=err.statusCode||500;
+		err.status=err.status||'error';
+		
+		res.status(err.statusCode).json({
+			status:err.statusCode,
+			message: err.message
+		})
+	}
+
+- Example of using in handle undefine routes:
+	app.all('*', (req,res,next) => {
+		const err= new Error(`Can't find ${req.originalUrl} in the server`);
+		err.statusCode=404;
+		err.status='fail';
+
+		next(err);
+	});
+
+
+
+---USER'S---
+- User authentication and authorization: this is the whole work flow of logging users in and allowing them with certain protected resources that non-logged in users cannot access 
+
+1. How Authentication with JWT Works
+- Json Web Tokens are a stateless solution for authentication. So, there is no need to store any session state on the server which of course is perfect for restful APIs like the one that we're building
+- How it works: Assuming we already have a registered user in our database, this is how a user logs into the app. So the user's client starts by making a POST request with the username or email and the password. The application then checks if the user exist and if the password is correct. And if so, a unique Json Web Token for only that user is created using a secret string that stored on a server. The server then sends that JWT back to the client which will store it either in a cookie or in a local storage. And just like this the user is authenticated and basically logged into our application without leaving anystate on the server----> The server actually does NOT know which users are logged in. But of course, the user knows that he's logged in bc he has a valid JWT which is a bit like a passport to access protected parts of the application.
+!!!! Shorten: A user is logged in as soon as he get back his unique valid JWT which is not saved anywhere on the server--> Therefore, the process is completely stateless. Then each time a user wants to access a protected route like his user profile data, he send his JWT along with a request (it's like showing his passport to get access to that route)
+!!!! Important: all this communication must happen over https. So secure encrypted http in order to prevent that anyone can get access to passwords or JWT. Only then we have a really secure system
 
