@@ -27,6 +27,11 @@ router
   .route('/updateMe')
   .patch(authController.protect, userController.updateMe);
 
+//Inactivate User themselves
+router
+  .route('/deleteMe')
+  .delete(authController.protect, userController.deleteMe);
+
 router
   .route('/')
   .get(userController.getAllUsers)

@@ -61,6 +61,15 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     data: { user: updatedUser },
   });
 });
+
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  await User.findByIdAndUpdate(req.user.id, { active: true });
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
+
 exports.getUser = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   if (!user) return next(new AppError('No ID found in the database', 404));
