@@ -13,6 +13,7 @@ const globalErrorHandler = require('./controllers/errorController.js');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
+const reviewRouter = require('./routes/reviewRoutes.js');
 
 //1) GLOBAL MIDDLEWARE
 //Set security HTTP headers
@@ -86,6 +87,7 @@ app.use((req, res, next) => {
 //Mounting the routers
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 //all undefined routes
 app.all('*', (req, res, next) => {
