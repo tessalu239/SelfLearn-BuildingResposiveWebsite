@@ -397,3 +397,84 @@ tourSchema.post('save',function(){})=> runs after save() and create(), but !!!NO
 !!!! Shorten: A user is logged in as soon as he get back his unique valid JWT which is not saved anywhere on the server--> Therefore, the process is completely stateless. Then each time a user wants to access a protected route like his user profile data, he send his JWT along with a request (it's like showing his passport to get access to that route)
 !!!! Important: all this communication must happen over https. So secure encrypted http in order to prevent that anyone can get access to passwords or JWT. Only then we have a really secure system
 
+---SECURITY BET PRACTICES AND SUGGESTIONS---
+1. COMPROMISES DATABASE
+. Strongly encrypt password with salt and hash (bcrypt)
+. Strongly encrypt password reset tokens (SHA 256)
+
+2. BRUTE FORCE ATTACKS
+. Use bcrypt (to make login request slow)
+. Implement rate limiting (express-rate-limit)
+. Implement maximum login attempts
+
+3. Cross0site scripting (XSS) Attacks
+. Store  JWT in HTTPOnly cookies
+. Sanitize user input data
+. Set special HTTP headers (helmet package)
+
+4. DENIAL-OF-SERVICE (DOS) ATTACK
+. Implement rate limiting (express-rate-limit)
+. Limit body payload (in body-parse)
+. Avoid evil regular expression
+
+5. NOSQL QUERY INJECTION
+. Use mongoose for MongoDB (because of SchemaTypes)
+. Sanitize user input data
+
+6. OTHER BEST PRACTICE AND SUGGESTIONS
+. Always use HTTPs
+. Create random password reset tokens with expiry dates
+. Deny access to JWT after password change
+. Don't commit sensitive config data to Git
+. Don't send error details to client
+. Prevent cross-Site Request Forgery (csurf package)
+. Require re-authentication before a high-value action
+. Implement a black list of untrusted JWT
+. Confirm user email address after first creating account
+. Keep user logged in with refresh tokens
+. Implement 2-factor authentication
+. Prevent parameter pollution causing Uncaught Exceptions
+ 
+
+
+
+------------------------- MODELLING DATA AND ADVANCED MONGOOSE -------------------------
+1. MongoDB Data Modelling:
+- Data Modelling: Real-world scenario -> Unstructured data -> Structured, Logical, data model
+	Ex: Online Shop: categories, cart, suppliers, customers, orders, products....-> categories-> products <-> suppliers/ products <> orders <> cart/ customers
+- Step for data modelling:
+	1. Different types of relationships between data
+	2. Referencing/normalization vs. embedding/denormalization
+	3. Embedding or referencing other documents?
+	4. Types of referencing
+
+		1. Different types of relationships between data
+	- 1:1	movie-> name ( a movie can only have 1 name)
+	- 1:many	+1:few	movie -> awards*3(4).. ( A movie can have few awards)	
+			+1:many movie -> reviews*100s/1000s... (A movie can have hundred/thousands reviews)		
+			+1:ton movie -> logs*millions ( A movie can have millions document logs)
+	- many:many	movie -> actors*many At the same time actor -> movies*many ( One movie can have many actors, 1 actor can play in many movie)
+	
+		2. Referencing/normalization vs. embedding/denormalization
+	- Embedding: 	+Relationship Type (How 2 datasets are related to each other): 1:few/1: many
+			+Data access patterns ( How often data is read and written. Read/Write ratio): Data is mostly read/ Data doesn't change quickly/ High read and write ratio
+			+Data Closeness ( how "much" the data is related, how we want to query): Datasets really belong together  
+	- Referencing:	+Relationship Types: 1:Many/1:ton/ many:many
+			+Data Access Patterns: Data is updated/ Low read and write ratio
+			+Data Closeness: We frequently need to query both datasets on their own
+		4. Types of referencing
+	- Child referencing: Parent's gonna refer to the children --> best for 1:few
+	- Parent referencing: Children gonna refer to the parent ( parent have no idea about children) ---> 1:many/1:ton 
+	- 2-way referencing: many:many
+----------> SUMARY:
++ The most important principle is: Structure your data to match the ways that your application queries and updated data
++ In other words: Identify the questions that arise from your application's use cases first, and then model your data so that the question can get answered in the most efficient way
++ In general, always favor embedding, unless there is a good reason not to embed. Especially on 1:FEW and 1:MANY relationship
++ A 1:TON or a MANY:MANY relationship is usually a good reason to reference instead of embedding
++ Also, favor referencing when data is updated a lot and if you need to frequently access a dataset on its own
++ Use embedding when data is mostly read but rarely updated, and when 2 datasets belong intrinsically together
++ Don't allow arrays to grow infinitely. Therefore, if you need to normalize, use child referencing for 1:MANY relationships, and parent referencing for 1:TON relationships
++Use 2-way referencing for MANY:MANY relationships
+
+
+
