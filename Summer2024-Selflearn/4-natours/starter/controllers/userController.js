@@ -11,33 +11,6 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(User.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
-  const users = await features.query;
-
-  //SEND RESPONSE
-  res.status(200).json({
-    status: 'success',
-    result: users.length,
-    data: {
-      users,
-    },
-  });
-});
-exports.createUser = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user: newUser,
-    },
-  });
-});
 exports.updateMe = catchAsync(async (req, res, next) => {
   //1. Create error id user wanna change password data ==> ask them to use /updatePassword
   if (req.body.password || req.body.passwordConfirm) {
@@ -71,13 +44,14 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getUser = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return next(new AppError('No ID found in the database', 404));
-  res.status(200).json({
-    status: 'success',
-    data: { user },
-  });
-});
+exports.getUser = factory.getOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
+
+exports.getAllUsers = factory.getAll(User);
+exports.createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not defined! Please use /signup instead',
+  });
+};
