@@ -2,7 +2,24 @@
 const express = require('express');
 const tourController = require('./../controllers/tourControllers');
 const authController = require('./../controllers/authController');
+const reviewRouter = require('./reviewRoutes');
+
 const router = express.Router();
+
+//router.param('id', tourCOntroller.checkID)
+
+//POST /tour/tourID/review
+//GET /tour/tourID/review
+//GET /tour/tourID/review/userID
+
+// router
+//   .route('/:tourId/reviews')
+//   .post(
+//     authController.protect,
+//     authController.restrictTo('user'),
+//     reviewController.addNewReview,
+//   );
+router.use('/:tourId/reviews', reviewRouter);
 
 //this middleware only runs when the id parameter is present in the URL
 // router.param('id', tourController.checkID);
