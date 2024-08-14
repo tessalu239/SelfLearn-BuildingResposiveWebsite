@@ -79,10 +79,5 @@ exports.getUser = catchAsync(async (req, res, next) => {
     data: { user },
   });
 });
-exports.updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
-  });
-};
+exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
