@@ -35,6 +35,11 @@ router
     authController.restrictTo('admin', 'lead-guide', 'guide'),
     tourController.getMonthPlan,
   );
+
+//Geospatial Queries: FInding Tour within Radius
+router
+  .route('/tours-within/:distance/center/:latlng/unit/:unit')
+  .get(tourController.getTourWithin);
 router
   .route('/')
   .get(tourController.getAllTours)
