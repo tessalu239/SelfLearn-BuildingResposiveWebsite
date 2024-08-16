@@ -40,6 +40,10 @@ router
 router
   .route('/tours-within/:distance/center/:latlng/unit/:unit')
   .get(tourController.getTourWithin);
+
+//Calculating distances
+router.route('/distances/:latlng/unit/:unit').get(tourController.calcDistance);
+
 router
   .route('/')
   .get(tourController.getAllTours)
