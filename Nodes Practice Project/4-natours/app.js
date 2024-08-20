@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const expressLayouts = require('express-ejs-layouts');
 
 const AppError = require('./utils/appError.js');
 const globalErrorHandler = require('./controllers/errorController.js');
@@ -15,12 +16,13 @@ const reviewRouter = require('./routes/reviewRoutes.js');
 
 const app = express();
 
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('layout', path.join(__dirname, 'views/base'));
+app.use(expressLayouts);
 
 //1) GLOBAL MIDDLEWARE
 //Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 //Set security HTTP headers
 app.use(helmet());
