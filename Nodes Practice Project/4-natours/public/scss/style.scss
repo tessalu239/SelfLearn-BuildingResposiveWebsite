@@ -1,4 +1,23 @@
+body {
+  background-color: var(--bs-light);
+}
 .navbar .btn-outline-light:hover {
   //color: #2b280e !important;
   color: var(--bs-dark) !important;
+}
+.brand-name {
+  font-family: 'Kaushan Script', cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18vw !important;
+  color: #fff;
+  text-shadow: 5px 5px 10px #9b9004;
+}
+
+.header {
+  background: url('/img/header-background.png') center center no-repeat;
+  background-size: stretch;
+}
+.cls-1 {
+  fill: var(--bs-light) !important;
 }
