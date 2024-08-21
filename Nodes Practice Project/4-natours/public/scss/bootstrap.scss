@@ -2,6 +2,7 @@
 $primary: #246b03;
 $light: #eeffde;
 $dark: #2b280e;
+$gray: #333;
 //#c2e6f9, #52a7d7, #349370
 
 //Navbar
@@ -40,5 +41,5 @@ $spacers: (
 ) !default;
 
 $line-height-base: 1.7;
-$headings-margin-bottom: $spacing * 1;
+$headings-margin-bottom: $spacer * 1;
 @import './../../node_modules/bootstrap/scss/bootstrap.scss';

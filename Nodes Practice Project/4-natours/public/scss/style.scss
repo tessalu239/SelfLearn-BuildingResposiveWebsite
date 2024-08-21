@@ -1,15 +1,17 @@
-body {
-  background-color: var(--bs-light);
-}
 .navbar .btn-outline-light:hover {
   //color: #2b280e !important;
   color: var(--bs-dark) !important;
+}
+
+.navbar-sticky {
+  opacity: 0.9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .brand-name {
   font-family: 'Kaushan Script', cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 18vw !important;
+  font-size: 15vw !important;
   color: #fff;
   text-shadow: 5px 5px 10px #9b9004;
 }
@@ -20,4 +22,16 @@ body {
 }
 .cls-1 {
   fill: var(--bs-light) !important;
+}
+
+.about-us {
+  background: url('/img/about-us-background.png') center center no-repeat;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  line-height: 2;
+}
+.title-explain {
+  font-weight: 400;
 }
