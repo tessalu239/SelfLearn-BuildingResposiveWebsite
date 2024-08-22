@@ -1,0 +1,44 @@
+<div class="col-md-4 d-flex align-self-stretch">
+  <div class="card mb-4 p-5 bg-primary rounded-5" style="position: relative">
+    <img
+      class="card-img-top border border-5 border-light rounded-5"
+      src="<%= tour.imageCover.startsWith('/img/') ? '' : '/img/tours/' %><%= tour.imageCover %>"
+      alt="<%= tour.name %>"
+    />
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h5 class="card-title fw-bold text-light mb-0 text-uppercase">
+          <%= tour.name %>
+        </h5>
+        <div class="text-light text-end">
+          <p class="d-inline fw-bold"><%= tour.ratingsAverage %></p>
+          <i class="fas fa-star fa-2x"></i>
+        </div>
+      </div>
+      <ul class="m-0 text-light list-unstyled">
+        <li class="mb-1">
+          <i class="fa-solid fa-location-dot"></i> &nbsp <%=
+          tour.startLocation.description %>
+        </li>
+        <li class="mb-1">
+          <i class="fas fa-clock"></i> &nbsp <%= tour.duration %> &nbsp days
+        </li>
+        <li class="mb-1">
+          <i class="fas fa-user-group"></i> &nbsp <%= tour.maxGroupSize %> &nbsp
+          people
+        </li>
+      </ul>
+      <p class="text-end">
+        <!-- <% if (typeof user!=="undefined"&& user.role==='customer') { %> -->
+        <button
+          type="button"
+          class="btn btn-success d-block mt-3"
+          onclick="window.location.href='/'"
+        >
+          More Details
+        </button>
+        <!-- <% } %> -->
+      </p>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@
   font-style: normal;
   font-size: 15vw !important;
   color: #fff;
-  text-shadow: 5px 5px 10px #9b9004;
+  text-shadow: 5px 5px 10px rgb(155, 144, 4);
 }
 
 .header {
@@ -40,4 +40,14 @@
 
 .title-explain {
   font-weight: 400;
+}
+
+.border-light {
+  box-shadow: 0 0 10px rgba(155, 144, 4, 0.9);
+}
+
+.price {
+  position: absolute;
+  top: 0;
+  left: 50;
 }
