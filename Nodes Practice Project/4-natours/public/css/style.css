@@ -1,3 +1,7 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .navbar .btn-outline-light:hover {
   color: var(--bs-dark) !important;
 }
