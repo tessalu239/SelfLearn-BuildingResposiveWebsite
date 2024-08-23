@@ -26,6 +26,10 @@ const reviewSchema = new mongoose.Schema(
       ref: 'Tour',
       required: [true, 'Review must belong to a tour.'],
     },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -36,7 +40,7 @@ const reviewSchema = new mongoose.Schema(
 reviewSchema.index({ user: 1, tour: 1 }, { unique: true });
 
 reviewSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'user', select: 'name' });
+  this.populate({ path: 'user', select: 'name photo' });
   next();
 });
 

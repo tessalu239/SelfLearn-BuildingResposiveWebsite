@@ -42,7 +42,7 @@
 </header>
 
 <!-- ABOUT US -->
-<section class="about-us bg-light py-5">
+<section id ="about-us"class="bg-light py-5">
   <div class="containter-lg">
     <div
       class="text-container px-4 py-4 d-flex flex-column justify-content-center h-100 mb-5"
@@ -85,23 +85,25 @@
 <section class="testimonials py-8">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 text-center">
-        <img src="/img/users/user-1.jpg" alt="" class="rounded-circle mb-3" />
-        <p class="lead fst-italic">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-          aspernatur!
-        </p>
-        <p class="fw-bold">Kenny Smith - Portland, ME</p>
-      </div>
+      <%featuredReviews.forEach(review=>{%>
+                <div class="col-md-4 text-center">
+          
+          <img src="<%=review.user.photo.startsWith('/img/') ? '' : '/img/users/' %><%=review.user.photo%>" alt="<%=review.user.name%>" class="rounded-circle mb-3" />
+          <p class="lead fst-italic">
+            <%=review.review%>
+          </p>
+          <p class="fw-bold"><%=review.user.name%></p>
+        </div>
+        <%});%>
 
-      <div class="col-md-4 text-center">
+      <!-- <div class="col-md-4 text-center">
         <img src="/img/users/user-1.jpg" alt="" class="rounded-circle mb-3" />
         <p class="lead fst-italic">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam,
           aspernatur!
         </p>
         <p class="fw-bold">Kenny Smith - Portland, ME</p>
-      </div>
+      </div> -->
 
       <!-- <div class="col-md-4 text-center">
           <img

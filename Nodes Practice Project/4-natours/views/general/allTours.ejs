@@ -1,0 +1,19 @@
+<section class="tour-highlight bg-light py-7">
+  <div class="container-lg">
+    <div
+      class="text-container px-4 py-4 d-flex flex-column justify-content-center h-100 mb-5"
+    >
+      <h1 class="title display-1 fw-bold text-center text-dark mb-5">
+        Our Current Tours
+      </h1>
+        <div class="container">
+          <div class="row">
+            <% tours.forEach(tour=>{%>
+              <%-include("../partials/tour-card",{tour:tour})%>
+            <%});%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
