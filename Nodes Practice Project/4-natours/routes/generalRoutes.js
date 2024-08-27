@@ -20,25 +20,42 @@ router.get(
 
     const featuredTours = tours.filter((tour) => tour.feature);
     const featuredReviews = reviews.filter((review) => review.featured);
+
     res.status(200).render('general/home', {
-      featuredReviews,
       featuredTours,
+      featuredReviews,
     });
   }),
 );
 
 //All Tours Route
 router.get(
-  '/alltours',
+  '/tours',
   catchAsync(async (req, res) => {
     const tours = await Tour.find();
 
     if (!tours) {
-      console.error('Error fetching meal kits:');
+      console.error('Error fetching tours:');
       res.status(500).send('Server Error');
     }
 
     res.status(200).render('general/allTours', { tours });
+  }),
+);
+
+router.get(
+  '/tours/:id',
+  catchAsync(async (req, res) => {
+    const tour = await Tour.findById(req.params.id).populate({
+      path: 'reviews',
+      fields: 'review rating user',
+    });
+
+    if (!tour) {
+      console.log('Error to fetch the request tour');
+      res.status(500).send('Server Error');
+    }
+    res.status(200).render('general/tour', { tour });
   }),
 );
 

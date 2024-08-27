@@ -1,14 +1,36 @@
-function userScroll() {
-  const navbar = document.querySelector('.navbar');
+document.addEventListener('DOMContentLoaded', function () {
+  // Ensure that the element with id 'cardDirection' exists
+  const cardDirections = document.querySelectorAll('.cardDirection');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('bg-dark');
-      navbar.classList.add('navbar-sticky');
+  cardDirections.forEach(function (cardDirection) {
+    if (cardDirection) {
+      cardDirection.addEventListener('click', function () {
+        // Ensure that the tour id is properly rendered in EJS
+        const tourId = cardDirection.getAttribute('data-tour-id');
+
+        if (tourId) {
+          window.location.href = `/tours/${tourId}`;
+        } else {
+          console.error('Tour ID is missing.');
+        }
+      });
     } else {
-      navbar.classList.remove('bg-dark');
-      navbar.classList.remove('navbar-sticky');
+      console.error('Element with id "cardDirection" not found.');
     }
   });
-}
-document.addEventListener('DOMContentLoaded', userScroll);
+
+  // Handle navbar scroll behavior
+  const navbar = document.querySelector('.navbar');
+
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark', 'navbar-sticky');
+      } else {
+        navbar.classList.remove('bg-dark', 'navbar-sticky');
+      }
+    });
+  } else {
+    console.error('Navbar element not found.');
+  }
+});

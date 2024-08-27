@@ -1,5 +1,5 @@
 <div class="col-md-4 d-flex align-self-stretch tour-card">
-  <div class="card mb-4 p-5 bg-primary rounded-5">
+  <div class="card mb-4 p-4 bg-primary rounded-5">
     <img
       class="card-img-top border border-5 border-light rounded-5 image-card-border"
       src="<%= tour.imageCover.startsWith('/img/') ? '' : '/img/tours/' %><%= tour.imageCover %>"
@@ -22,7 +22,7 @@
           tour.startLocation.description %>
         </li>
         <li class="mb-1">
-          <i class="fas fa-clock"></i> &nbsp <%= tour.duration %> &nbsp days
+          <i class="fas fa-clock"></i> &nbsp <%= tour.duration %> days
         </li>
       
         <li class="mb-1">
@@ -30,19 +30,18 @@
           tour.startDates[0].toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) %> &nbsp
         </li>
       </ul>
-      <p class="text-end">
-        <!-- <% if (typeof user!=="undefined"&& user.role==='customer') { %> -->
-        <button
-          type="button"
-          class="btn btn-success d-block mt-3"
-          onclick="window.location.href='/'"
+    <div class="d-inline d-grid d-md-flex justify-content-end">
+        <a href="#"
+        class="cardDirection btn btn-primary text-light px-3 border-light mt-0 justify-content-end"
+        role="button" data-bs-toggle="button" data-tour-id="<%=tour._id%>"
         >
-          More Details
-        </button>
-        <!-- <% } %> -->
-      </p>
+        More Details
+       </a>
+     </div>
     </div>
-  </div>
+    <!-- <% if (typeof user!=="undefined"&& user.role==='customer') { %> -->
+    <!-- <% } %> -->
+    </div>
   <div
     class="price border-light text-light fw-bold bg-primary text-center align-content-center"
   >

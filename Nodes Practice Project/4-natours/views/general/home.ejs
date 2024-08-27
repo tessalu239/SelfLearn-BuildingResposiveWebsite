@@ -72,7 +72,7 @@
         <div class="container">
           <div class="row">
             <%featuredTours.forEach(tour=>{%>
-              <%-include("../partials/tour-card",{tour:tour})%>
+              <%-include("../partials/tour-card",{tour})%>
             <%});%>
           </div>
         </div>
@@ -95,28 +95,6 @@
           <p class="fw-bold"><%=review.user.name%></p>
         </div>
         <%});%>
-
-      <!-- <div class="col-md-4 text-center">
-        <img src="/img/users/user-1.jpg" alt="" class="rounded-circle mb-3" />
-        <p class="lead fst-italic">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-          aspernatur!
-        </p>
-        <p class="fw-bold">Kenny Smith - Portland, ME</p>
-      </div> -->
-
-      <!-- <div class="col-md-4 text-center">
-          <img
-          src="/img/users/user-1.jpg"
-          alt=""
-          class="rounded-circle mb-3"
-          />
-          <p class="lead fst-italic">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-            aspernatur!
-          </p>
-          <p class="fw-bold">Kenny Smith - Portland, ME</p>
-        </div> -->
     </div>
   </div>
 </section>
