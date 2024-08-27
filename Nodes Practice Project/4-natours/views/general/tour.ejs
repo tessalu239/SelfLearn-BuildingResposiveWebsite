@@ -18,44 +18,109 @@
       </div>
     </div>
     <svg
-  class="frame-decoration"
-  data-name="Layer 2"
-  xmlns="http://www.w3.org/2000/svg"
-  preserveAspectRatio="none"
-  viewBox="0 0 1920 192.275"
+class="frame-decoration"
+data-name="Layer 2"
+xmlns="http://www.w3.org/2000/svg"
+preserveAspectRatio="none"
+viewBox="0 0 1920 192.275"
 >
-  <defs>
-    <!-- <style>
-      .cls-1 {
-        fill: #f3f6f9;
-      </style> -->
-  </defs>
-  <title>frame-decoration</title>
-  <path
-    class="cls-1"
-    d="M1920 195 L0 50 L0 500 Z"
-  />
+<defs>
+</defs>
+<title>frame-decoration</title>
+<path
+class="cls-1 cls-2"
+d="M1920 195 L0 50 L0 500 Z"
+/>
 </svg>
-
   </div>
   
 </header>
 
-<section class="tour-highlight bg-light py-7">
+<section class="tour-highlight bg-light mb-6 pt-3">
   <div class="container-lg">
-   <div class="d-flex">
-    <div class="row">
-      <div class="text-dark">
-        <h6 class="text-uppercase">QUICK FACTS</h6>
-        <ul class="list-unstyled">
-          <li><i class="fa-regular fa-calendar"></i>&nbsp<%=tour.startDates[0].toLocaleDateString('en-US',{month:'long',day:'numeric', year:'numeric'})%></li>
+   <!-- <div class="d-flex gap-8"> -->
+     <div class="row">
+    <div class="col-lg-5 me-auto">
+        <h5 class="text-uppercase fw-bold text-primary mb-3">QUICK FACTS</h5>
+        <ul class="list-unstyled mb-5">
+          <li class="d-flex mb-1">
+            <i class="fa-regular fa-calendar align-self-center "></i>
+            <div class="text-uppercase fw-semibold  align-self-center px-2">next date</div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.startDates[0].toLocaleDateString('en-US',{month:'long',day:'numeric', year:'numeric'})%></div>
+          </li>
+          <li class="d-flex mb-1">
+            <i class="fa-regular fa-calendar align-self-center "></i>
+            <div class="text-uppercase fw-semibold align-self-center px-2">next date</div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.startDates[1].toLocaleDateString('en-US',{month:'long',day:'numeric', year:'numeric'})%></div>
+          </li>
+          <li class="d-flex mb-1">
+            <i class="fa-solid fa-chart-simple align-self-center "></i>
+            <div class="text-uppercase fw-semibold align-self-center px-2">difficulty</div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.difficulty%></div>
+          </li>
+          <li class="d-flex mb-1">
+            <i class="fa-regular fa-user align-self-center "></i>
+            <div class="text-uppercase fw-semibold align-self-center px-2">participants</div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.maxGroupSize%></div>
+          </li>
+          <li class="d-flex mb-1">
+            <i class="fa-regular fa-star align-self-center "></i>
+            <div class="text-uppercase fw-semibold align-self-center px-2">rating</div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.ratingsAverage%>/5</div>
+          </li>
         </ul>      
       </div>
-      <p class="text">hi</p>
-    </div>
-    <div class="row">
-      <p class="text">hi</p>
-    </div>
-   </div>
+    <div class="col-lg-6">
+      <div class="pb-5">
+        <h5 class="text-uppercase fw-bold text-primary mb-3">about <%=tour.name%></h5>
+        <p class="text"><%=tour.description%></p>
+       </div>
+       </div>
   </div>
-</section>
+  <div class="row">
+    <div class="col-md-5">
+
+      <div class="tour-guides pb-5">
+        <h5 class="text-uppercase fw-bold text-primary mb-3 text-uppercase">your tour guides</h5>
+        <ul class="list-unstyled">
+          <li class="d-flex mb-1 ">
+            <img src="<%=tour.guides[0].photo.startsWith('/img/') ? '' : '/img/users/' %><%=tour.guides[0].photo%>" alt="<%=tour.guides[0].name%>" class="rounded-circle img-tour-guide" />
+            <div class="text-uppercase fw-semibold  align-self-center px-2"><%=tour.guides[0].role%></div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.guides[0].name%></div>
+          </li>
+          <li class="d-flex mb-1 ">
+            <img src="<%=tour.guides[1].photo.startsWith('/img/') ? '' : '/img/users/' %><%=tour.guides[1].photo%>" alt="<%=tour.guides[1].name%>" class="rounded-circle img-tour-guide" />
+            <div class="text-uppercase fw-semibold  align-self-center px-2"><%=tour.guides[1].role%></div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.guides[1].name%></div>
+          </li> <%if (tour.guides[2]){%>
+          <li class="d-flex mb-1 ">
+            <img src="<%=tour.guides[2].photo.startsWith('/img/') ? '' : '/img/users/' %><%=tour.guides[2].photo%>" alt="<%=tour.guides[2].name%>" class="rounded-circle img-tour-guide" />
+            <div class="text-uppercase fw-semibold  align-self-center px-2"><%=tour.guides[2].role%></div>
+            <div class="justify-content-end ms-auto align-self-center px-2"><%=tour.guides[2].name%></div>
+          </li>
+        <%};%>
+        </ul>      </div>
+      </div>
+    </div>
+    </div>
+    <svg
+class="frame-decoration"
+data-name="Layer 2"
+xmlns="http://www.w3.org/2000/svg"
+preserveAspectRatio="none"
+viewBox="0 0 1920 192.275"
+>
+<defs>
+</defs>
+<title>frame-decoration</title>
+<path
+class="cls-1 cls-3"
+d="M1920 195 L0 50 L0 500 Z"
+/>
+</svg>
+  </section>
+
+  <section class="tour-highlight bg-white mb-6 pt-3">
+    <div class="container-lg">
+    </div>
+    </section>

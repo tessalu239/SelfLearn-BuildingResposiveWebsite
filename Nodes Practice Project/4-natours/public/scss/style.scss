@@ -23,8 +23,11 @@
   background: url('/img/header-background.png') center center no-repeat;
   background-size: stretch;
 }
-.cls-1 {
+.cls-2 {
   fill: var(--bs-light) !important;
+}
+.cls-3 {
+  fill: #fff !important;
 }
 
 #about-us {
@@ -52,4 +55,7 @@
   width: 20%;
   height: 8%;
   border: 3px solid #73ad21;
+}
+.img-tour-guide {
+  width: 10% !important;
 }
