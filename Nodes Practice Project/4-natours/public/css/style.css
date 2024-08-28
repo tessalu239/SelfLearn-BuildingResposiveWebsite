@@ -33,6 +33,10 @@
   fill: #fff !important;
 }
 
+.cls-4 {
+  fill: var(--bs-primary) !important;
+}
+
 #about-us {
   background: url("/img/about-us-background.png") center center no-repeat;
   background-size: cover;
@@ -64,4 +68,19 @@
 
 .img-tour-guide {
   width: 10% !important;
+}
+
+.angled-container {
+  width: 300%; /* Adjust height as needed */
+  height: 150%;
+  clip-path: polygon(0 0%, 100% 25%, 100% 100%, 0 75%);
+  /* This creates an angled effect, you can adjust the percentage values */
+}
+
+.understar {
+  color: gray !important;
+}
+
+.stars {
+  color: yellow !important;
 }

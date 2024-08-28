@@ -17,26 +17,11 @@
         </div>
       </div>
     </div>
-    <svg
-class="frame-decoration"
-data-name="Layer 2"
-xmlns="http://www.w3.org/2000/svg"
-preserveAspectRatio="none"
-viewBox="0 0 1920 192.275"
->
-<defs>
-</defs>
-<title>frame-decoration</title>
-<path
-class="cls-1 cls-2"
-d="M1920 195 L0 50 L0 500 Z"
-/>
-</svg>
   </div>
-  
 </header>
 
-<section class="tour-highlight bg-light mb-6 pt-3">
+<!-- INFO SECTION -->
+<section class="tour-highlight bg-light pb-1 pt-5">
   <div class="container-lg">
    <!-- <div class="d-flex gap-8"> -->
      <div class="row">
@@ -103,7 +88,65 @@ d="M1920 195 L0 50 L0 500 Z"
       </div>
     </div>
     </div>
-    <svg
+</section>
+
+<!-- PHOTO SECTION -->
+<section class="tour-highlight bg-light pb-5">
+    
+    <div class="container-lg">
+          <div class="row">
+            <div class="col-sm-4 px-0">
+              <img src="<%=tour.images[0].startsWith('/img/tours/')?'':'/img/tours/'%><%=tour.images[0]%>" alt="" class="img-fluid">
+            </div>
+            <div class="col-sm-4 px-0">
+              <img src="<%=tour.images[1].startsWith('/img/tours/')?'':'/img/tours/'%><%=tour.images[1]%>" alt="" class="img-fluid">
+            </div>
+            <div class="col-sm-4 px-0">
+              <img src="<%=tour.images[2].startsWith('/img/tours/')?'':'/img/tours/'%><%=tour.images[2]%>" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+<!-- MAP SECTION -->
+<section class="tour-highlight bg-light pb-5">
+#MAP
+</section>
+<!-- REVIEW SECTION -->
+<section class="tour-highlight bg-primary py-5">
+  <div class="container-lg">
+    <div class="row">
+    <%for(let num=0;num<tour.reviews.length;num++){%>
+      <div class="col-md-4 my-1">
+      <div class="card p-4">
+
+        <div class=" d-flex name-pics my-2">
+          <img src="<%=tour.reviews[num].user.photo.startsWith('/img/') ? '' : '/img/users/' %><%=tour.reviews[num].user.photo%>" alt="<%=tour.reviews[num].user.name%>" class="rounded-circle img-tour-guide" />
+          <p class="align-self-center mb-0 ps-2 fw-bold"><%=tour.reviews[num].user.name%></p>
+        </div>
+        <p class="fst-italic"><%=tour.reviews[num].review%></p>
+        <div class="stars">
+          <%let i=5, n=0;%>
+          <%if(tour.reviews[num].rating){%>
+            <%for(n;n<tour.reviews[num].rating;n++){%>
+              <i class="fa-regular fa-star fa-2x stars"></i>   
+              <%};%>
+              <%};%>
+              <%i=i-n;%>
+              <%if(i>0){%>
+                <%for(i;i>0;i--){%>
+                  <i class="fa-regular fa-star fa-2x understar"></i>
+                  <%}}%>
+                </div>
+              </div>
+            </div>
+            <%}%>
+            </div>
+          </div>
+</section>
+
+<!--     <svg
 class="frame-decoration"
 data-name="Layer 2"
 xmlns="http://www.w3.org/2000/svg"
@@ -114,13 +157,7 @@ viewBox="0 0 1920 192.275"
 </defs>
 <title>frame-decoration</title>
 <path
-class="cls-1 cls-3"
+class="cls-1 cls-2"
 d="M1920 195 L0 50 L0 500 Z"
 />
-</svg>
-  </section>
-
-  <section class="tour-highlight bg-white mb-6 pt-3">
-    <div class="container-lg">
-    </div>
-    </section>
+</svg> -->

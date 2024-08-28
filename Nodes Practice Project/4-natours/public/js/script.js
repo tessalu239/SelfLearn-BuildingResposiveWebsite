@@ -34,3 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('Navbar element not found.');
   }
 });
+
+// window.addEventListener('resize', function () {
+//   if (window.matchMedia('(max-width: 576px)').matches) {
+//     // If the screen is 576px or smaller, remove the class
+//     document.querySelector('.photos').classList.remove('angled-container');
+//   } else {
+//     document.querySelector('.photos').classList.add('angled-container');
+//   }
+// });
