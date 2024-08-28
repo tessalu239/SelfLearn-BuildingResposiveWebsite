@@ -26,8 +26,15 @@ app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, '/public')));
 
 //Set security HTTP headers
-app.use(helmet());
-
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'script-src': ["'self'", 'https://unpkg.com'],
+      'img-src': ["'self'", 'data:', 'https://*.tile.openstreetmap.org'],
+    },
+  }),
+);
 //Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
