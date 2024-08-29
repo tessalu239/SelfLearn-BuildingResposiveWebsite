@@ -59,4 +59,12 @@ router.get(
   }),
 );
 
+router.get(
+  '/user/login',
+  catchAsync(async (req, res) => {
+    // const user = await User.findOne(req.body.email);
+    res.status(200).render('general/login', {});
+  }),
+);
+
 module.exports = router;
