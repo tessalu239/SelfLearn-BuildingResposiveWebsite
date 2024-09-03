@@ -15,4 +15,6 @@ router.get('/user/login', generalController.loginPage);
 router.post('/user/login', generalController.loginFunction);
 router.get('/logout', generalController.logout);
 
+router.get('/signup', generalController.signupPage);
+router.post('/signup', generalController.signupFunction);
 module.exports = router;
