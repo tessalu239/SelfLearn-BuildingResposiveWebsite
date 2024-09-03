@@ -74,6 +74,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   console.log(token);
   if (!token) {
@@ -99,6 +101,36 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   //GRANT ACCESS TO PROTECTED ROUTE
   req.user = freshUser;
+  next();
+});
+
+//ONLY FOR RENDER PAGES, NO ERRORS
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  try {
+    if (req.cookies.jwt) {
+      // Validate token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET,
+      );
+
+      // Check if user exists
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) return next();
+
+      // Check if user changed password after token was issued
+      if (currentUser.changedPasswordAfter(decoded.iat)) return next();
+
+      // User is logged in
+      res.locals.user = currentUser;
+      return next();
+    }
+  } catch {
+    // Do not return an error, just move to next middleware
+    return next();
+  }
+
+  // If there is no cookie, move to next middleware
   next();
 });
 

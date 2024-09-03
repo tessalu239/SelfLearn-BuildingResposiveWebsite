@@ -1,50 +1,29 @@
-/* eslint-disable */
+document.addEventListener('DOMContentLoaded', () => {
+  const locationsData = JSON.parse(
+    document.getElementById('map').dataset.locations,
+  );
 
-// ----------------------------------------------
-// Function to display map on tour page
-// ----------------------------------------------
+  const [longStart, latStart] = locationsData[0].coordinates;
 
-const displayMap = (locations) => {
-  // Create the map and attach it to the #map
-  const map = L.map('map', { zoomControl: false });
+  const map = L.map('map').setView([latStart, longStart], 8);
 
-  // Add a tile layer to add to our map
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  // Create icon using the image provided by Jonas
-  var greenIcon = L.icon({
-    iconUrl: '/img/pin.png',
-    iconSize: [32, 40], // size of the icon
-    iconAnchor: [16, 40], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -50], // point from which the popup should open relative to the iconAnchor
-  });
+  for (i = locationsData.length - 1; i >= 0; i--) {
+    const currLocation = locationsData[i];
 
-  // Add locations to the map
-  const points = [];
-  locations.forEach((loc) => {
-    // Create points
-    points.push([loc.coordinates[1], loc.coordinates[0]]);
+    const [long, lat] = currLocation.coordinates;
 
-    // Add markers
-    L.marker([loc.coordinates[1], loc.coordinates[0]], { icon: greenIcon })
-      .addTo(map)
-      // Add popup
-      .bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
-        autoClose: false,
-        className: 'mapPopup',
-      })
+    const marker = L.marker([lat, long]).addTo(map);
+
+    marker
+      .bindPopup(
+        `<h1>Arrive on Day ${currLocation.day}</h1><br><h1>Location: ${currLocation.description}.</h1>`,
+      )
       .openPopup();
-  });
-
-  // Set map bounds to include current location
-  const bounds = L.latLngBounds(points).pad(0.5);
-  map.fitBounds(bounds);
-
-  // Disable scroll on map
-  map.scrollWheelZoom.disable();
-};
-
-export default displayMap;
+  }
+});
