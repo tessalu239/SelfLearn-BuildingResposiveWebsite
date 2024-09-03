@@ -13,4 +13,6 @@ router.get('/tours/:id', generalController.getTour);
 
 router.get('/user/login', generalController.loginPage);
 router.post('/user/login', generalController.loginFunction);
+router.get('/logout', generalController.logout);
+
 module.exports = router;

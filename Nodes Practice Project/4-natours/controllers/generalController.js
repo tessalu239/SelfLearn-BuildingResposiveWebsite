@@ -1,4 +1,3 @@
-const bcryptjs = require('bcryptjs');
 const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Review = require('../models/reviewModel');
@@ -126,4 +125,11 @@ exports.loginFunction = async (req, res) => {
   } else {
     res.render('general/login', { values, validationMsg, errors });
   }
+};
+
+exports.logout = (req, res) => {
+  //Clear the session from memory
+  req.session.destroy();
+
+  res.redirect('/user/login');
 };
