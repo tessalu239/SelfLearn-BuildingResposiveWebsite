@@ -133,7 +133,7 @@ exports.loginFunction = async (req, res) => {
                 //req.session.user=user;
                 req.session.user = user;
 
-                res.redirect('/');
+                createSendTokenAndRender(user, 200, res, '/');
                 console.log(user);
               } else {
                 //password not matched
@@ -161,10 +161,22 @@ exports.loginFunction = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  //Clear the session from memory
-  req.session.destroy();
+  // Clear the cookie containing the JWT token
+  res.cookie('jwt', 'logout', {
+    expires: new Date(Date.now() + 10 * 1000), // expires in 10 seconds
+    httpOnly: true,
+  });
 
-  res.redirect('/user/login');
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).send('Server Error');
+    }
+
+    // Redirect to the login page after logging out
+    res.redirect('/user/login');
+  });
 };
 
 // SIGNUP
