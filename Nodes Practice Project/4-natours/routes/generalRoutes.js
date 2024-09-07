@@ -1,6 +1,8 @@
 const express = require('express');
 const generalController = require('../controllers/generalController');
 
+const authController = require('../controllers/authController');
+
 const router = express.Router();
 
 //Home page Route
@@ -17,4 +19,6 @@ router.get('/logout', generalController.logout);
 
 router.get('/signup', generalController.signupPage);
 router.post('/signup', generalController.signupFunction);
+
+router.get('/account', authController.protect, generalController.getAccount);
 module.exports = router;

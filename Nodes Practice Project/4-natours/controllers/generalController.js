@@ -322,3 +322,7 @@ exports.signupFunction = async (req, res) => {
     res.status(400).render('general/error');
   }
 };
+
+exports.getAccount = (req, res) => {
+  res.status(200).render('general/account');
+};

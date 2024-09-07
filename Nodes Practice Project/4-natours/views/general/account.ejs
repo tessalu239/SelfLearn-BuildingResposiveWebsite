@@ -1,0 +1,76 @@
+<section class="py-7 bg-light">
+  <div class="container-lg">
+    <div class="d-md-flex">
+      <div class="col-md-2 me-auto">
+        <ul class="account-link bg-light list-unstyled pb-3 mb-4 ">
+          <li class="nav-item pb-2">
+            <a href="/" class="py-2 nav-link text-dark text-uppercase"
+            ><i class="fa-solid fa-gear me-2 ps-2"></i>Setting</a
+          ></li>          <li class="nav-item pb-2">
+
+            <a href="/" class="py-2 nav-link text-dark text-uppercase"
+            ><i class="fa-solid fa-briefcase me-2 ps-2"></i>My Bookings</a
+            >
+          </li>
+          <li class="nav-item pb-2">
+          <a href="/" class="py-2 nav-link text-dark text-uppercase"
+          ><i class="fa-solid fa-star me-2 ps-2"></i>My Reviews</a
+          ></li>
+          <li class="nav-item pb-1">
+          <a href="/" class="py-2 nav-link text-dark text-uppercase"
+          ><i class="fa-regular fa-credit-card me-2 ps-2"></i>Billing</a
+          >
+        </li>
+        </ul>
+        <%if(user.role==="admin"){%>
+          <h6 class="text-uppercase underline fw-bold pe-8 d-inline">admin</h6>
+          <ul class="account-link bg-light list-unstyled pb-3 mb-4">
+            <li class="nav-item pb-2 mt-1">
+              <a href="/" class="py-2 nav-link text-dark text-uppercase"
+              ><i class="fa-regular fa-map me-2 ps-2"></i>manage tours</a
+            ></li>          <li class="nav-item pb-2">
+  
+              <a href="/" class="py-2 nav-link text-dark text-uppercase"
+              ><i class="fa-solid fa-users me-2 ps-2"></i>Manage users</a
+              >
+            </li>
+            <li class="nav-item pb-2">
+            <a href="/" class="py-2 nav-link text-dark text-uppercase"
+            ><i class="fa-solid fa-star me-2 ps-2"></i>Manage Reviews</a
+            ></li>
+            <li class="nav-item pb-1">
+              <a href="/" class="py-2 nav-link text-dark text-uppercase"
+              ><i class="fa-solid fa-briefcase me-2 ps-2"></i>Manage Bookings</a
+            >
+          </li>
+          </ul>
+          <%}%>
+      </div>
+      <div class="col-md-8">
+        <div class="main-content">
+          <h3 class="text-primary text-uppercase fw-bold mb-4 text-center">
+            your account settings
+          </h3>
+        </div>
+  
+        <form action="/account" method="post" class="form">
+          <label for="email" class="fw-semibold text-dark">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email" name="email" 
+            placeholder="<%=user.email%>"
+            value="<%=user.email%>""
+          />
+          <label for="name" class="fw-semibold text-dark mt-3">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name" name="name" 
+            placeholder="<%=user.name%>"
+            value="<%=user.name%>""
+          />
+    </div>
+  </div>
+</div>
+</section>

@@ -88,3 +88,17 @@
 .info-card {
   box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.5);
 }
+
+.logout-btn a:hover {
+  color: var(--bs-dark) !important;
+  outline: var(--bs-dark);
+}
+
+.underline {
+  border-bottom: solid 3px var(--bs-dark);
+}
+
+.account-link > li a:hover {
+  background-color: var(--bs-primary);
+  color: var(--bs-light) !important;
+}
