@@ -21,4 +21,9 @@ router.get('/signup', generalController.signupPage);
 router.post('/signup', generalController.signupFunction);
 
 router.get('/account', authController.protect, generalController.getAccount);
+router.post(
+  '/submit-user-data',
+  authController.protect,
+  generalController.updateUserData,
+);
 module.exports = router;
