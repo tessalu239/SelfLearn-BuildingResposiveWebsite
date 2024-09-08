@@ -54,22 +54,39 @@
         </div>
   
         <form action="/account" method="post" class="form">
-          <label for="email" class="fw-semibold text-dark">Email Address</label>
+          <label for="email" class="fw-semibold text-dark mt-4 mb-1">Email Address</label>
           <input
             type="email"
             class="form-control"
             id="email" name="email" 
             placeholder="<%=user.email%>"
-            value="<%=user.email%>""
+            value="<%=user.email%>"
           />
-          <label for="name" class="fw-semibold text-dark mt-3">Full Name</label>
+          <label for="name" class="fw-semibold text-dark mt-4 mb-1">Full Name</label>
           <input
             type="text"
             class="form-control"
             id="name" name="name" 
             placeholder="<%=user.name%>"
-            value="<%=user.name%>""
+            value="<%=user.name%>"
           />
+          <div class="img d-flex d-flex align-items-center">
+
+            <img src="/img/users/<%=user.photo? user.photo:'default.jpg'%>" alt="<%=user.name%>" class="mt-4 rounded-5 img-tour-guide">
+            <input
+            type="file"
+            class="form-control mx-3"
+            id="photo" name="photo" 
+            accept="image/*"
+            />
+          </div>
+
+          <input
+          type="submit"
+          value="save setting"
+          class="btn d-inline text-end bg-primary text-light text-uppercase rounded-5 mt-5"
+        />
+
     </div>
   </div>
 </div>
