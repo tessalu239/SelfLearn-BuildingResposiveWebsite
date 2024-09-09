@@ -80,7 +80,7 @@ exports.getTour = catchAsync(async (req, res) => {
     });
 
     if (!tour) {
-      console.log('Error to fetch the request tour');
+      // console.log('Error to fetch the request tour');
       res.status(400).render('general/error');
     }
     res.status(200).render('general/tour', { tour });
@@ -99,7 +99,7 @@ exports.loginPage = (req, res) => {
 
 exports.loginFunction = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { email, password } = req.body;
 
     let values = req.body;
@@ -147,11 +147,11 @@ exports.loginFunction = async (req, res) => {
                   req.session.user = user;
 
                   createSendTokenAndRender(user, 200, res, '/');
-                  console.log(user);
+                  // console.log(user);
                 } else {
                   //password not matched
                   errors.push('The password is not matched');
-                  console.log(errors[0]);
+                  // console.log(errors[0]);
                   res.render('general/login', {
                     values,
                     validationMsg,
@@ -162,14 +162,14 @@ exports.loginFunction = async (req, res) => {
           } else {
             //user not found
             errors.push("Couldn't find the email in the database");
-            console.log(errors[0]);
+            // console.log(errors[0]);
             res.render('general/login', { values, validationMsg, errors });
           }
         })
         .catch((err) => {
           //not able to query the database
           errors.push('Not able to query the database: ' + err);
-          console.log(errors[0]);
+          // console.log(errors[0]);
           res.render('general/login', { values, validationMsg, errors });
         });
     } else {
@@ -212,7 +212,7 @@ exports.signupPage = (req, res) => {
 
 exports.signupFunction = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password, passwordConfirm } = req.body;
 
     let values = req.body;
@@ -285,7 +285,7 @@ exports.signupFunction = async (req, res) => {
       newUser
         .save()
         .then((userSaved) => {
-          console.log(`User ${userSaved.name} has been saved to the database`);
+          // console.log(`User ${userSaved.name} has been saved to the database`);
 
           const msg = {
             //to: "nickroma.seneca@gmail.com", // Send confirmation email to the user's email
@@ -305,13 +305,13 @@ exports.signupFunction = async (req, res) => {
               createSendTokenAndRender(newUser, 201, res, '/');
             })
             .catch((err) => {
-              console.log(err);
+              // console.log(err);
               res.render('general/signup', { values, validationMsg });
             });
         })
         .catch((err) => {
           errors.push("Couldn't save the user to the database" + err);
-          console.log(errors[0]);
+          // console.log(errors[0]);
           res.render('general/signup', { values, validationMsg, errors });
         });
     } else {

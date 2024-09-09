@@ -11,6 +11,8 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+
 const AppError = require('./utils/appError.js');
 const globalErrorHandler = require('./controllers/errorController.js');
 const tourRouter = require('./routes/tourRoutes');
@@ -88,6 +90,8 @@ app.use(
   }),
 );
 
+app.use(compression());
+
 app.set('view engine', 'ejs');
 app.set('layout', path.join(__dirname, 'views/base'));
 app.use(expressLayouts);
@@ -114,14 +118,9 @@ app.use((req, res, next) => {
 //Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
-
-//3) Routes
-// app.get('/', (req, res) => {
-//   res.status(200).render('base', { tour: 'The Forest Hiker', user: 'Jonas' });
-// });
 
 //Mounting the routers
 app.use('/', generalRoutes);
