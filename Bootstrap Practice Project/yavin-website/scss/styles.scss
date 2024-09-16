@@ -26,6 +26,12 @@ xl-text {
   opacity: 0.9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.details .decoration-star {
+  left: -200px;
+  width: 500px;
+}
+
 @media (max-width: 992px) {
   .xl-text {
     font-size: 50px;
