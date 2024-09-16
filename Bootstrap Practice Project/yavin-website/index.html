@@ -17,8 +17,91 @@
     <title>Yavin Office Design</title>
   </head>
   <body>
-    <h1 class="bg-primary">Yavin Website Starter</h1>
-
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light">
+      <div class="container">
+        <a href="#" class="navbar-brand"
+          ><img src="/images/logo.svg" alt="Yavin Logo" width="124"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="#home" aria-current="page" class="nav-link"></a>
+            </li>
+            <li class="nav-item">
+              <a href="#details" class="nav-link">Details</a>
+            </li>
+            <li class="nav-item">
+              <a href="#services" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="#contact"
+                class="nav-link btn btn-outline-secondary px-4 mx-4 text-secondary"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- HERO -->
+    <header class="header position-relative mt-6 overflow-hidden">
+      <img
+        src="/images/decoration-star.svg"
+        alt=""
+        class="decoration-star position-absolute"
+      />
+      <img
+        src="/images/decoration-star.svg"
+        alt=""
+        class="decoration-star-2 position-absolute"
+      />
+      <div class="container position-relative z-3">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mt-6">
+              <h1 class="xl-text">
+                The <span class="text-primary">Perfect</span> Office Space
+              </h1>
+              <p class="lead mb-4">
+                We specialize in transforming office spaces into inspiring and
+                functional environment. Let us bring your vision to life
+              </p>
+              <a href="#introduction" class="btn btn-primary btn-lg m-2"
+                >More Details</a
+              >
+              <a href="#contact" class="btn btn-outline-secondary btn-lg m-2"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="img-container">
+              <img
+                src="/images/header.png"
+                alt="Office table with a women working on the side"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
   </body>
