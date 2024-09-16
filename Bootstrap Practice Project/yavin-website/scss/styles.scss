@@ -32,6 +32,11 @@ xl-text {
   width: 500px;
 }
 
+.details-2 .decoration-star {
+  right: -200px;
+  width: 500px;
+}
+
 @media (max-width: 992px) {
   .xl-text {
     font-size: 50px;
@@ -59,5 +64,15 @@ xl-text {
   }
   .header .img-container {
     margin-top: 30px;
+  }
+  .services .col-md-4 {
+    border-bottom: 1px #ccc solid;
+    margin: 10px 0;
+  }
+  .details-2 img {
+    margin-top: 20px !important;
+  }
+  .details-2.decoration-star {
+    top: 300px;
   }
 }
