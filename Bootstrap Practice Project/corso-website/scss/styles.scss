@@ -12,6 +12,9 @@
   width: 90%;
   margin: 0 auto;
 }
+.navbar {
+  transition: all 0.5s ease-in-out;
+}
 
 @media (max-width: 992px) {
   .navbar {
