@@ -1,0 +1,40 @@
+<section class="container feature-meal-kit my-6">
+  <div class="card mt-8 bg-light">
+    <h3 class="display-5 fw-bold text-center text-secondary my-4">
+      Delete A Meal Kit
+    </h3>
+    <div class="col-md-12 px-md-5 form">
+      <d
+        class="text-container d-flex flex-column justify-content-center h-100 mb-5"
+      >
+        <p class="fw-bold mb-3 text-md-start fst-italic text-center text-dark">
+          Are you sure you want to remove the following meal kit?
+        </p>
+          <p><span class="fw-bold">Title:</span> <%= mealkit.title %></p>
+          <p><span class="fw-bold">Includes:</span> <%= mealkit.include %></p>
+          <p>
+            <span class="fw-bold">Description:</span> <%= mealkit.description %>
+          </p>
+          <p><span class="fw-bold">Category:</span> <%= mealkit.category %></p>
+          <p><span class="fw-bold">Price:</span> $<%= mealkit.price %></p>
+          <p>
+            <span class="fw-bold">Cooking Time:</span> <%= mealkit.cookingTime
+            %> minutes
+          </p>
+          <p><span class="fw-bold">Serving:</span> <%= mealkit.serving %></p>
+          <img
+            src="<%= mealkit.imageUrl.startsWith('/img/') ? '' : '/mealkits-pics/' %><%= mealkit.imageUrl %>"
+            alt="Meal Kit Image"
+            class="img-fluid mx-5 mt-3 rounded-3"
+          />
+      </div>
+    </div>
+  </div>
+  <form method="post" action="/mealkits/remove/<%= mealkit._id %>">
+    <input
+      type="submit"
+      value="Confirm Delete"
+      class="bg-primary form-control form-control-lg text-light fw-bold rounded-5 mt-4"
+    />
+  </form>
+</section>

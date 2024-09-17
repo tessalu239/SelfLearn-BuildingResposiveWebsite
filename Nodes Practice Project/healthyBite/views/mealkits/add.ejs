@@ -1,0 +1,170 @@
+<section class="container feature-meal-kit my-6">
+  <div class="card my-8 bg-light">
+    <h3 class="display-5 fw-bold text-center text-secondary my-4">
+      Add A New Meal Kit
+    </h3>
+    <div class="col-md-12 ps-md-5 form">
+      <div
+        class="text-container d-flex flex-column justify-content-center h-100 mb-5"
+      >
+        <p class="fst-italic text-center text-dark">
+          Create a new preference meal by entering following information
+        </p>
+        <% if(typeof errorMsg !== "undefined" && errorMsg.length >0){ %> <%
+        errorMsg.forEach(err => { %>
+        <p style="color: red"><%= err %></p>
+        <% }) %> <% } %>
+        <form
+          method="post"
+          action="/mealkits/add"
+          enctype="multipart/form-data"
+        >
+          <div class="my-3 mx-sm-5 ms-md-0">
+            <label for="title">Title:</label>
+            <input
+              type="text"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+              placeholder="Title"
+              id="title"
+              name="title"
+              value="<%= values.title %>"
+            />
+            <% if(validationMsg.title) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.title %></span
+            >
+            <br />
+            <% } %>
+
+            <label for="include">Includes:</label>
+            <input
+              type="text"
+              class="fst-italic form-control form-control-lg rounded-5 my-2"
+              placeholder="what is included"
+              id="include"
+              name="include"
+              value="<%= values.include %>"
+            />
+            <% if(validationMsg.include) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.include %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Description -->
+            <label for="description">Description:</label><br />
+            <textarea
+              id="description"
+              name="description"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+              rows="4"
+              cols="50"
+            >
+<%=values.description%></textarea
+            ><br />
+            <% if(validationMsg.description) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.description %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Category -->
+            <label for="category">Category:</label><br />
+            <input
+              type="text"
+              id="category"
+              name="category"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+              value="<%= values.category %>"
+            /><br />
+            <% if(validationMsg.category) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.category %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Price -->
+            <label for="price">Price:</label><br />
+            <input
+              type="number"
+              id="price"
+              name="price"
+              min="0.01"
+              step="0.01"
+              value="<%= values.price %>"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+            /><br />
+            <% if(validationMsg.price) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.price %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Cooking Time -->
+            <label for="cookingTime">Cooking Time (minutes):</label>
+            <input
+              type="number"
+              id="cookingTime"
+              name="cookingTime"
+              min="1"
+              value="<%= values.cookingTime %>"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+            /><br />
+            <% if(validationMsg.cookingTime) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.cookingTime %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Servings -->
+            <label for="serving">Servings:</label><br />
+            <input
+              type="number"
+              id="serving"
+              name="serving"
+              min="1"
+              value="<%= values.serving %>"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+            /><br />
+            <% if(validationMsg.serving) { %>
+            <span style="color: red; font-size: small">
+              <%= validationMsg.serving %></span
+            >
+            <br />
+            <% } %>
+
+            <!-- Image URL -->
+            <label for="imageUrl">Image URL:</label><br />
+            <input
+              type="file"
+              id="imageUrl"
+              name="imageUrl"
+              accept="image/*"
+              class="fst-italic form-control form-control-lg rounded-5 mt-2"
+              required
+            /><br />
+
+            <!-- Featured Meal Kit -->
+            <label for="featuredMealKit">Featured Meal Kit:</label>
+            <input
+              type="checkbox"
+              id="featuredMealKit"
+              name="featuredMealKit"
+            /><br />
+
+            <input
+              type="submit"
+              value="Add"
+              class="bg-primary form-control form-control-lg text-light fw-bold rounded-5 mt-4"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

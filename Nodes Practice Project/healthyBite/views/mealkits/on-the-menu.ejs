@@ -1,0 +1,15 @@
+<section class="container feature-meal-kit my-6">
+  <p class="subheader text-center">On the Menu</p>
+  <h3 class="display-5 fw-bold text-center text-secondary mb-5">
+    Explore our variety of meal categories
+  </h3>
+  <% Object.entries(categorizedMeal).forEach(([categoryName, mealKits]) => { %>
+  <h3 class="fw-bold text-center text-success mt-5 mb-3">
+    <%= categoryName %>
+  </h3>
+  <div class="row">
+    <% mealKits.forEach(meal => { %> <%- include("../partials/mealkits",
+    {meal:meal}) %> <% }); %>
+  </div>
+  <% }); %>
+</section>

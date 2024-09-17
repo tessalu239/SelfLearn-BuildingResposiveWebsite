@@ -1,0 +1,29 @@
+<div class="col-md-4 d-flex align-self-stretch">
+  <div class="card mb-4">
+    <img
+      class="card-img-top"
+      src="<%= meal.imageUrl.startsWith('/img/') ? '' : '/mealkits-pics/' %><%= meal.imageUrl %>"
+      alt="<%= meal.title %>"
+    />
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between mb-1 align-items-center">
+        <h5 class="card-title fw-bold text-success mb-0"><%= meal.title %></h5>
+        <button class="btn border-success text-success">
+          <%= meal.price %>
+        </button>
+      </div>
+      <p class="card-text mx-0"><%= meal.include %></p>
+      <p class="text-end">
+        <% if (typeof user!=="undefined"&& user.role==='customer') { %>
+        <button
+          type="button"
+          class="btn btn-success d-block mt-3"
+          onclick="window.location.href='/add-meal/<%= meal._id %>'"
+        >
+          Add to cart
+        </button>
+        <% } %>
+      </p>
+    </div>
+  </div>
+</div>

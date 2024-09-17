@@ -1,0 +1,60 @@
+<div class="container-xl">
+  <a href="/">
+    <img
+      class="navbar-brand"
+      src="/img/heathyBite-logo.png"
+      alt="Brand Logo"
+      width="180"
+    />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarDropdown"
+    aria-controls="navbarDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-center" id="navbarDropdown">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" href="/mealkits/on-the-menu">On the menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" href="#how-it-work">How it works</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" href="/random">Blog</a>
+      </li>
+      <% if (typeof user === "undefined") { %>
+      <li class="nav-item">
+        <a
+          class="nav-link btn btn-outline-dark bg-white fw-semibold px-4 mx-2"
+          href="/log-in"
+          >Log in</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="signup-btn nav-link btn btn-outline-light bg-primary fw-semibold text-white px-4 mx-2"
+          href="/sign-up"
+          >Sign up</a
+        >
+      </li>
+      <% } else { %>
+        <li class="nav-item fw-semibold pt-2"><span class="text-dark">Hello,</span>  <span class="text-success"><%= user.firstName%></span></li>
+        <li class="nav-item">
+          <a
+            class="nav-link btn btn-outline-dark bg-white fw-semibold px-4 mx-2"
+            href="/log-out"
+            >Log out</a
+          >
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+html {
+  scroll-behavior: smooth;
+  transition: all 0.5s;
+}
+
+.bg-transfer {
+  opacity: 0.89;
+  background-color: #86ad55 !important;
+}
+
+.navbar {
+  transition: all 0.5s;
+}
+
+.header {
+  background-color: #e7f0db;
+}
+
+.step-title {
+  color: #584435;
+  line-height: 1.07;
+}
+
+.step-img {
+  border-radius: 11px;
+  width: 90%;
+}
+
+.hero-header {
+  line-height: 1.05;
+}
+
+.hero-header {
+  line-height: 1.05;
+  color: #432c1c;
+}
+
+.log-in .container {
+  height: 80%;
+}
+
+@media (max-width: 776px) {
+  .contact-link {
+    margin-top: 1.4rem;
+  }
+  .contact-link .footer-subheader {
+    margin-bottom: 0.2rem !important;
+  }
+  .form {
+    padding-bottom: 3rem;
+  }
+  p {
+    margin: 0 4rem 0 4rem;
+  }
+}
+@media (max-width: 576px) {
+  form {
+    margin: 0 4rem 0 4rem;
+  }
+  body,
+  .form,
+  .log-in .container {
+    padding: 0;
+    margin: 0;
+  }
+  .form {
+    padding: 0;
+    margin: 0;
+  }
+  .card {
+    margin: 0 !important;
+    padding-bottom: 7rem;
+  }
+  h2 {
+    margin-top: 4rem;
+  }
+  h2,
+  p {
+    text-align: center;
+  }
+  p {
+    margin: 0 4rem 0 4rem;
+  }
+}
+@media (max-width: 990px) {
+  .navbar-collapse {
+    background-color: #fff;
+  }
+  .signup-btn {
+    background: none !important;
+    color: #555 !important;
+  }
+}

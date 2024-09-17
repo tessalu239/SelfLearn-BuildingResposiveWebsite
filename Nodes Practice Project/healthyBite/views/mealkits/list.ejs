@@ -1,0 +1,48 @@
+<!-- <p class="text-grey my-8 pb-7 text-center fw-bold">
+  This is list page, welcome clerk 🤩
+</p> -->
+<section class="container feature-meal-kit my-6">
+  <h3 class="display-5 fw-bold text-center text-secondary mb-4">
+    Meal Kits List
+  </h3>
+
+  <a href="/mealkits/add" class="btn btn-primary btn-lg text-white"
+    >Add A New Meal Kit</a
+  >
+
+  <ul class="list-group">
+    <% mealKits.forEach (mealKit => { %>
+    <li class="list-group-item my-3">
+      <h2 class="fw-bold text-success d-inline-block"><%= mealKit.title %></h2>
+      <a
+        href="/mealkits/edit/<%= mealKit._id %>"
+        class="btn btn-outline-light bg-primary fw-semibold text-white px-4 mx-2 mb-2"
+        >Edit</a
+      >
+      <a
+        href="/mealkits/remove/<%= mealKit._id %>"
+        class="btn btn-outline-dark bg-white fw-semibold px-4 mx-2 mb-2"
+        >Delete</a
+      >
+      <p>
+        <span class="fw-bold text-grey">Includes:</span> <%= mealKit.include %>
+      </p>
+      <p>
+        <span class="fw-bold text-grey">Description:</span> <%=
+        mealKit.description %>
+      </p>
+      <p>
+        <span class="fw-bold text-grey">Category:</span> <%= mealKit.category %>
+      </p>
+      <p><span class="fw-bold text-grey">Price:</span>💲<%= mealKit.price %></p>
+      <p>
+        <span class="fw-bold text-grey">Cooking Time:</span> <%=
+        mealKit.cookingTime %> minutes
+      </p>
+      <p>
+        <span class="fw-bold text-grey">Serving:</span> <%= mealKit.serving %>
+      </p>
+      <% }) %>
+    </li>
+  </ul>
+</section>

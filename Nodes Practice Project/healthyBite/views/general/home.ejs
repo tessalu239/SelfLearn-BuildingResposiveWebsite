@@ -1,0 +1,122 @@
+    <!-- Header -->
+    <header class="header">
+      <!-- Hero -->
+      <div class="hero text-secondary pt-7">
+        <div class="container-xxl">
+          <div class="row">
+            <div class="col-md-6">
+              <div
+                class="text-container p-4 d-flex flex-column justify-content-center h-100 mb-5"
+              >
+                <h1 class="display-2 fw-bolder hero-header">
+                  Nourishing Your Body, Saving Your Time
+                </h1>
+                <p class="lead fw-normal text-dark mx-0">
+                  we're dedicated to delivering more than just meals—we're
+                  delivering a promise of nourishment and wellness, precisely
+                  when you need it.
+                </p>
+                      <a href="/sign-up" class="btn btn-primary btn-lg text-white">
+                        Get Started
+                      </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="image-container mb-5 px-4">
+                  <img
+                    src="/img/hero.png"
+                    alt="bowl of rice with floating tomatoes"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+<section id="how-it-work" class="how-it-work my-5">
+  <p class="subheader text-center">How it works</p>
+  <h3 class="display-5 fw-bold text-center text-secondary mb-5">Get Started with 4 Easy Steps</h3>
+  <div class="container">
+    <!-- STEP 1 -->
+    <div class="row mb-5">
+      <div class="col-md-6 border-right">
+        <h5 class="step-title fw-bold pt-3"><span class="bg-light p-2 px-3">1.</span> Browse our Menu</h5>
+        <p class="mx-0 me-3">
+          Explore our diverse menu filled with delicious and nutritious
+          options designed to cater to various dietary preferences and needs.
+          From wholesome salads to protein-packed bowls and flavorful wraps,
+          there's something for everyone.
+        </p>
+      </div>
+      <div class="col-md-6"> 
+        <img src="/img/step-1.jpg" alt="Two paper menu on the table" class="step-img img-fluid ">
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="row mb-5">      
+      <div class="col-md-6"> 
+        <img src="/img/step-2.jpg" alt="A man is smiling while looking at his phone" class="step-img img-fluid">
+      </div>
+      <div class="col-md-6">
+        <h5 class="step-title fw-bold pt-3"><span class="bg-light p-2 px-3">2.</span> Place Your Order</h5>
+        <p class="mx-0 me-3">
+          Once you've selected your desired dishes, simply place your order
+          through our user-friendly online platform or mobile app. Our
+          streamlined ordering process ensures a hassle-free experience,
+          allowing you to customize your meal selections with ease.
+        </p>
+      </div>
+    </div>
+
+        <!-- STEP 3 -->
+        <div class="row mb-5">
+          <div class="col-md-6 ">
+            <h5 class="step-title fw-bold pt-3"><span class="bg-light p-2 px-3">3.</span> We Prepare Your Meal</h5>
+            <p class="mx-0 me-3">
+              Our team of culinary experts gets to work preparing your meal using
+              only the freshest ingredients sourced from trusted suppliers. Each
+              dish is carefully crafted to meet our high standards of quality,
+              taste, and nutritional value.
+            </p>
+          </div>
+          <div class="col-md-6"> 
+            <img src="/img/step-3.jpg" alt="A person holding a lot of stuff" class="step-img img-fluid ">
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+    <div class="row mb-5">      
+      <div class="col-md-6"> 
+        <img src="/img/step-4.jpg" alt="A person riding a bike to delivery food" class="step-img img-fluid ">
+      </div>
+      <div class="col-md-6">
+        <h5 class="step-title fw-bold pt-3"><span class="bg-light p-2 px-3">4.</span> Swift Delivery to Your Door</h5>
+        <p class="mx-0 me-3">
+          Sit back and relax as we swiftly deliver your order right to your
+            doorstep. With our efficient delivery service, you can count on your
+            meals arriving promptly, ensuring that you can enjoy your
+            HealthyBite Express experience whenever hunger strikes, without
+            delay.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="feature-meal-kit mb-5">
+    <p class="subheader text-center">Meal Features</p>
+<h3 class="display-5 fw-bold text-center text-secondary mb-5">
+  A World of Flavors Awaits
+</h3>
+<div class="container">
+  <div class="row">
+    
+    <%featuredMeal.forEach(meal => { %>
+      <%- include("../partials/mealkits", {meal:meal}) %>
+      <%});%>
+    </div>
+  </div>
+    
+  </section>

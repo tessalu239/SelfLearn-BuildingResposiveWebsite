@@ -1,0 +1,29 @@
+//Font
+$font-family-sans-serif: "Lato", sans-serif;
+
+//Color
+$primary: #79a442;
+$secondary: #584435;
+$success: #055b49;
+$dark: #555;
+$light: #e7f0db;
+
+//Navigation Bar
+$navbar-padding-y: 1rem;
+$navbar-dark-hover-color: $dark;
+$nav-link-color: $secondary;
+
+//spacer
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6,
+  7: $spacer * 8,
+  8: $spacer * 12,
+) !default;
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

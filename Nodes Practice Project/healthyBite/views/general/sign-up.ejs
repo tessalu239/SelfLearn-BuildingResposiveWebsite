@@ -1,0 +1,75 @@
+<section class="sign-up">
+  <div class="container">
+   <div class="card my-8 bg-light">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="image-container ">
+            <img
+            src="/img/signUp-img.jpg"
+            alt="A man happy eating"
+            class="img-fluid"
+            />
+          </div>
+        </div>
+        <div class="col-md-6 form">
+          <div
+          class="text-container d-flex flex-column justify-content-center h-100 mb-5"
+          >
+          <h2 class="display-5 fw-bolder text-md-start ps-1 text-sm-center text-secondary">Sign Up</h2>
+          <p class="text-md-start fst-italic text-sm-center text-dark" >Create your account by entering your email address and choosing a password</p>
+          <% if(typeof errors !== "undefined" && errors.length >0){ %>
+            <% errors.forEach(err => { %>
+              <p style="color:red;"><%= err %></p>
+            <% }) %>
+          <% } %>
+          <form method="post" action="/sign-up">
+            <div class="my-3 mx-sm-5 ms-md-0">
+              <label for="firstName">First Name*</label>
+              <input
+                type="text"
+                class="fst-italic form-control form-control-lg rounded-5 mt-2"
+                placeholder="First Name" id="firstName" name="firstName" value="<%=values.firstName%>"/>
+
+              <% if(validationMsg.firstName) { %>
+              <span style="color:red; font-size: small;"> <%= validationMsg.firstName %></span> <br>
+                <% } %>
+
+
+              <label for="lastName">Last Name*</label>
+              <input
+              type="text"
+              class="fst-italic form-control form-control-lg rounded-5 my-2"
+              placeholder="Last Name" id="lastName" name="lastName" value="<%=values.lastName%>"
+            />
+            <% if(validationMsg.lastName) { %>
+              <span style="color:red; font-size: small;"> <%= validationMsg.lastName %></span> <br>
+                <% } %>
+
+            <label for="email">Email</label>
+              <input
+                type="text"
+                class="fst-italic form-control form-control-lg rounded-5 my-2"
+                placeholder="Email Address" id="email" name="email" value="<%=values.email%>"
+              />
+              <% if(validationMsg.email) { %>
+                <span style="color:red; font-size: small;"> <%= validationMsg.email %></span> <br>
+                  <% } %>
+
+              <label for="password">Password</label>
+              <input
+              type="password"
+              class="fst-italic form-control form-control-lg rounded-5 my-2"
+              placeholder="Password" id="password" name="password"
+            />
+            <% if(validationMsg.password) { %>
+              <span style="color:red; font-size: small;"> <%= validationMsg.password %></span> <br>
+                <% } %>
+            <input type="submit" value="Get Started" class="bg-primary form-control form-control-lg text-light fw-bold rounded-5 mt-4"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div></div> 
+  </div>
+</section>

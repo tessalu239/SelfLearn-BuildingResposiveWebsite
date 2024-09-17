@@ -1,0 +1,94 @@
+<h3 class="display-5 fw-bold text-center text-secondary mb-5 mt-7">
+  Shopping Cart 🛒
+</h3>
+<% if (typeof hasMealkits === "boolean" && hasMealkits) { %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="border-0 bg-light">
+          <div class="p-2 px-3 text-uppercase">Product</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Price</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Quantity</div>
+        </th>
+        <th scope="col" class="border-0 bg-light">
+          <div class="py-2 text-uppercase">Remove</div>
+        </th>
+      </tr>
+    </thead>
+    <!-- body -->
+    <% if (typeof mealkits === "object" && mealkits.constructor === Array) { %>
+      <% mealkits.forEach(m => { %>
+    <tbody>
+      <tr>
+        <th scope="row" class="border-0">
+          <div class="p-2">
+            <img
+              src="<%=m.mealkit.imageUrl%>"
+              alt="<%=m.mealkit.title%>"
+              width="70"
+              class="img-fluid rounded shadow-sm"
+            />
+            <div class="ml-3 d-inline-block align-middle ms-2">
+              <h5 class="mb-0 text-dark d-inline-block align-middle fw-bold">
+                  <%=m.mealkit.title%>
+              </h5>
+              <span class="text-muted fst-italic d-block"
+                >Category: <%=m.mealkit.category%></span
+              >
+            </div>
+          </div>
+        </th>
+        <td class="border-0 align-middle"><strong><%=m.mealkit.price%></strong></td>
+        <td class="border-0 align-middle"><strong>          
+          <form action="/update/<%= m.mealkit._id %>" method="POST">
+            <input type="hidden" name="mealKitId" value="<%= m.mealkit._id %>">
+            <input type="number" name="qty" class="form-control quantity-input" value="<%= m.qty %>" min="1" data-id="<%= m.mealkit._id %>">
+          </form>
+        </strong></td>
+        <td class="border-0 align-middle">
+          <button
+          type="button"
+          class="bg-white bg-outline-white"
+          onclick="window.location.href='/remove-meal/<%= m.mealkit._id %>'"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+        </td>
+      </tr>
+    </tbody>
+    <% })} %> <% } else { %>
+      <%if (message&&message==="Your order has been confirmed"){%>
+        <p class="text-grey my-3 pb-7 text-center fw-bold"><%=message%></p>
+        <%} else { %>
+          <p class="text-grey my-3 pb-7 text-center">Your cart is empty.</p>
+      <% } }%>
+    </table>
+  </div>
+  <% if (typeof hasMealkits === "boolean" && hasMealkits) { %>
+  <!-- Check out -->
+  <div class="col-lg-6">
+    <div class="px-4 mb-0 mt-4 text-uppercase fw-bolder text-success">Order summary </div>
+    <div class="p-4 pt-2">
+      <ul class="list-unstyled mb-4">
+        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong>$<%=(cartTotal).toFixed(2) %></li>
+        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong>$<%=(cartTotal*0.1).toFixed(2) %></li>
+        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+          <h5 class="fw-bolder">$<%=(cartTotal*0.1+cartTotal).toFixed(2) %></h5>
+        </li>
+      </ul>
+      <button
+      type="button"
+      onclick="window.location.href='/check-out'"
+      class="btn btn-success"
+    >
+      Place Order
+    </button>
+    </div>
+  </div>
+  </div>
+  <% } %>

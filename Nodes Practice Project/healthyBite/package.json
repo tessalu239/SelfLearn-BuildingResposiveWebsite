@@ -1,0 +1,37 @@
+{
+  "name": "healthy-bite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "sass:build": "sass --no-source-map assets/scss:assets/css",
+    "sass:watch": "sass --no-source-map --watch assets/scss:assets/css"
+  },
+  "keywords": [
+    "healthybite",
+    "healthy",
+    "food",
+    "health",
+    "fitness",
+    "nutrition",
+    "lifestyle",
+    "wellness",
+    "wellbeing"
+  ],
+  "author": "MINH THU LU",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@sendgrid/mail": "^8.1.1",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.3.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-fileupload": "^1.5.0",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.2.2",
+    "sass": "^1.70.0"
+  }
+}

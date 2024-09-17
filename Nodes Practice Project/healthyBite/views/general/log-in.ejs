@@ -1,0 +1,62 @@
+<section class="log-in ">
+  <div class="container">
+   <div class="card my-8 bg-light">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="image-container ">
+            <img
+            src="/img/login-img.jpg"
+            alt="A women happy eating"
+            class="img-fluid"
+            />
+          </div>
+        </div>
+        <div class="col-md-6 form ">
+          <div
+          class="text-container d-flex flex-column justify-content-center h-100 mb-5"
+          >
+          <h2 class="display-5 fw-bolder text-md-start ps-1 text-sm-center text-secondary">Welcome Back,</h2>
+          <p class="text-md-start ps-2 fst-italic text-sm-center text-dark" >We are happy to see you back</p>
+          
+          <% if(typeof errors !== "undefined" && errors.length >0){ %>
+            <% errors.forEach(err => { %>
+              <p style="color:red;"><%= err %></p>
+            <% }) %>
+          <% } %>
+          <form method="post" action="/log-in">
+            <div class="my-3 mx-sm-5 ms-md-0">
+              <label for="email">Email</label>
+              <input
+              type="text"
+              class="fst-italic form-control form-control-lg rounded-5 my-2"
+              placeholder="Email Address" id="email" name="email" value="<%=values.email%>"
+              />
+              <% if(validationMsg.email) { %>
+                <span style="color:red; font-size: small;"> <%= validationMsg.email %></span> <br>
+                <% } %>
+                
+                <label for="password">Password</label>
+                <input
+                type="password"
+                class="fst-italic form-control form-control-lg rounded-5 my-2"
+                placeholder="Password" id="password" name="password"
+                />
+                <% if(validationMsg.password) { %>
+                  <span style="color:red; font-size: small;"> <%= validationMsg.password %></span> <br>
+                  <% } %>
+ <!-- Radio buttons for role selection -->
+  <!-- Add radio buttons for role selection -->
+  <input type="radio" id="dataEntryClerk" name="role" value="dataEntryClerk" checked>
+  <label for="dataEntryClerk">Data Entry Clerk</label>
+  <input type="radio" id="customer" name="role" value="customer">
+  <label for="customer">Customer</label>
+  
+                <input type="submit" value="Get Started" class="bg-primary form-control form-control-lg text-light fw-bold rounded-5 mt-4"/>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div></div> 
+  </div>
+</section>
