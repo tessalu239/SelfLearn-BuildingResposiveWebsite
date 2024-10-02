@@ -10,11 +10,11 @@ export function PackingList({
   const [sortBy, setSortBy] = useState("input");
   let sortedList;
   if (sortBy === "input") sortedList = items;
-  else if (sortBy === "description")
+  if (sortBy === "description")
     sortedList = items
       .slice()
       .sort((a, b) => a.description.localeCompare(b.description));
-  else if (sortBy === "pack")
+  if (sortBy === "pack")
     sortedList = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
