@@ -31,7 +31,7 @@ export function PackingList({
         ))}
       </ul>
       <div className="actions">
-        <select value={sortBy} onClick={(e) => setSortBy(e.target.value)}>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input">Sort by input</option>
           <option value="description">sort by description</option>
           <option value="pack">sort by packed</option>
